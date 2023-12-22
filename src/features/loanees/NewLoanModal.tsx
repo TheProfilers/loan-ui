@@ -22,7 +22,7 @@ export default function NewLoanModal() {
   };
   return (
     <>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
+     
       <button type="button" className="btn" onClick={openModal}>
         New Loanee
       </button>
