@@ -1,4 +1,4 @@
-import { BsHouseDoor } from "react-icons/bs";
+import { BsBriefcase, BsHouseDoor } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 export default function SideNav() {
     const routes =[
@@ -10,7 +10,7 @@ export default function SideNav() {
         {
             label: "Loanees",
             path: "/loanees",
-            icon: <BsHouseDoor />
+            icon: <BsBriefcase />
         }
     ]
   return (
@@ -20,13 +20,13 @@ export default function SideNav() {
       {/* Sidebar content here */}
       {
         routes.map((route, index) => (
-            <li key={index} ><NavLink to={route.path} className="flex space-x-2" >
-                <span>{route.icon}</span>
-                <span>{route.label}</span>
+            <li key={index} ><NavLink to={route.path} className="flex space-x-2 my-1" >
+                <span className="text-xl">{route.icon}</span>
+                <span className="text-lg">{route.label}</span>
                 </NavLink></li>
         ))
       }
-      <li><a>Sidebar Item 2</a></li>
+     
     </ul>
   
   </div>
