@@ -1,6 +1,18 @@
+import { useEffect } from "react";
 import { BsJustify } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function TopNav() {
+  const {storedUser,logout} = useAuth();
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(!storedUser) navigate('/login')
+  },[storedUser])
+const handleLogout = () => {
+    logout();
+    
+}
   return (
     <div className="navbar bg-base-100">
     <div className="flex-1">
@@ -23,7 +35,7 @@ export default function TopNav() {
             </a>
           </li>
           <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
+          <li onClick={handleLogout} ><a>Logout</a></li>
         </ul>
       </div>
     </div>
