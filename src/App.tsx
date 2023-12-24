@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Loanees from "./pages/Loanees";
 import Login from "./pages/Login";
@@ -8,6 +9,7 @@ import ProtectedRoute from "./ui/ProtectedRoute";
 
 export default function App() {
   return (
+    <AuthProvider>
     <BrowserRouter>
       <Routes>
         <Route element={
@@ -24,5 +26,6 @@ export default function App() {
 
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   );
 }
