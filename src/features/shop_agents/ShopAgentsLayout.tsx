@@ -1,5 +1,6 @@
 import BackButton from "../../ui/BackButton";
 import NewShopAgentModal from "./NewShopAgentModal";
+import ShopAgentDisplay from "./ShopAgentDisplay";
 
 export default function ShopAgentsLayout() {
   return (
@@ -8,6 +9,7 @@ export default function ShopAgentsLayout() {
         <BackButton/>
         <NewShopAgentModal/>
     </div>
+    <ShopAgentDisplay/>
     </>
   )
 }
