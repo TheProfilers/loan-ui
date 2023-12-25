@@ -1,10 +1,17 @@
 import { BsFillEyeFill, BsTrash3 } from 'react-icons/bs';
 import { ClockLoader } from 'react-spinners';
 import Swal from 'sweetalert2';
+import { useDeleteShopAgent } from './useDeleteShopAgent';
 import { useShopAgents } from './useShopAgents';
 
 export default function ShopAgentDisplay() {
     const {data,isLoading,error} = useShopAgents();
+    const {mutate,isPending}= useDeleteShopAgent();
+
+    const handleDelete = (id:string) => {
+        mutate(id);
+        
+    }
 
     if(isLoading) {
         return (
@@ -28,6 +35,7 @@ export default function ShopAgentDisplay() {
             </div>
         )
     }
+    console.log(data);
     
   return (
     <div className="overflow-x-auto">
@@ -54,7 +62,7 @@ export default function ShopAgentDisplay() {
                     <button className="btn btn-sm btn-square btn-success">
                       <BsFillEyeFill />
                     </button>
-                    <button className="btn btn-sm btn-square btn-warning">
+                    <button disabled={isPending} onClick={()=>handleDelete(agent._id!)} className="btn btn-sm btn-square btn-warning">
                       <BsTrash3 />
                     </button>
                   </div>
