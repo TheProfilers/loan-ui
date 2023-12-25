@@ -38,3 +38,21 @@ export async function newAgent(userData: UserTypes) {
     throw new Error(error.message);
   }
 }
+
+export async function deleteAgent(id: string) {
+    try {
+        const response = await fetch(`${BASE_URL}users/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token")!)}`,
+        },
+        });
+        const data = await response.json();
+        if (data.statusCode === 500) {
+        throw new Error(data.message);
+        }
+        return data;
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+}
