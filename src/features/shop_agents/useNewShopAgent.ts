@@ -1,11 +1,13 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { newAgent } from "../../services/shopagentapi";
 
 export function useNewShopAgent(){
+    const queryClient = useQueryClient();
     const {mutate,isPending} = useMutation({
         mutationFn:newAgent,
         onSuccess:()=>{
+            queryClient.invalidateQueries();
             Swal.fire({
                 position: "top-end",
                 icon: "success",
