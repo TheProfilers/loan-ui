@@ -14,8 +14,10 @@ export default function LoaneeDetailsDisplay() {
       <div className="shadow rounded-sm p-2">
         <ColumnText title="Email" text={loanee.email} />
         <div className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-8">
+         
+          <ColumnText title="First Name" text={loanee.firstName} />
+          <ColumnText title="Last Name" text={loanee.lastName} />
           <ColumnText title="Phone" text={loanee.phoneNumber} />
-          <ColumnText title="Full Name" text={loanee.firstName} />
           <ColumnText title="Limit" text={loanee.limit.toString()} />
           <ColumnText title="ID Number" text={loanee.idNumber} />
         </div>
