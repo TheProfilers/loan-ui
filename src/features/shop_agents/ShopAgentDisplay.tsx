@@ -1,6 +1,7 @@
 import { BsFillEyeFill, BsTrash3 } from 'react-icons/bs';
-import { ClockLoader } from 'react-spinners';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Loader from '../../ui/Loader';
 import { useDeleteShopAgent } from './useDeleteShopAgent';
 import { useShopAgents } from './useShopAgents';
 
@@ -14,11 +15,7 @@ export default function ShopAgentDisplay() {
     }
 
     if(isLoading) {
-        return (
-            <div className='h-screen flex flex-col justify-center items-center'>
-                <ClockLoader color="#36d7b7" />
-            </div>
-        )
+        return <Loader/>
     }
     if(error) {
         Swal.fire({
@@ -35,7 +32,7 @@ export default function ShopAgentDisplay() {
             </div>
         )
     }
-    console.log(data);
+    //console.log(data);
     
   return (
     <div className="overflow-x-auto">
@@ -59,9 +56,9 @@ export default function ShopAgentDisplay() {
                 <td>{agent.phone}</td>
                 <td>
                   <div className="flex space-x-1">
-                    <button className="btn btn-sm btn-square btn-success">
+                    <Link to={`/agents/${agent._id}`} className="btn btn-sm btn-square btn-success">
                       <BsFillEyeFill />
-                    </button>
+                    </Link>
                     <button disabled={isPending} onClick={()=>handleDelete(agent._id!)} className="btn btn-sm btn-square btn-warning">
                       <BsTrash3 />
                     </button>
