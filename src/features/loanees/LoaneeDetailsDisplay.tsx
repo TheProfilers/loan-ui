@@ -1,16 +1,14 @@
 import ColumnText from "../../ui/ColumnText";
 import Loader from "../../ui/Loader";
-import { useLoaneeLoans } from "../loans/useLoaneeLoans";
 import { useLoaneeDetails } from "./useLoaneeDetails";
 
 export default function LoaneeDetailsDisplay() {
     const {loanee, error, isLoading}= useLoaneeDetails()
-    const {loans,loaneeError,isLoadingLoans} = useLoaneeLoans()
-    if(isLoading && isLoadingLoans) return <Loader/>
-    if(error || loaneeError) return error ? <div>{error.message}</div> : <div>{loaneeError!.message}</div>
+   
+    if(isLoading) return <Loader/>
+    if(error ) return  <div>{error.message}</div> 
     if(!loanee ) return <div>Something went wrong</div>
-    //console.log(loanee)
-    console.log(loans)
+   
   return (
     <>
       <h3 className="font-medium text-lg my-3">Loanee Information</h3>
