@@ -54,7 +54,7 @@ export default function LoaneesDisplay() {
                 <Link to={`/loanees/${loanee._id}`} className="btn btn-sm btn-square btn-success">
                   <BsFillEyeFill />
                 </Link>
-                <button type="button" onClick={()=>handleDelete(loanee._id!)} className="btn btn-sm btn-square btn-warning">
+                <button type="button" disabled={isPending} onClick={()=>handleDelete(loanee._id!)} className="btn btn-sm btn-square btn-warning">
                   <BsTrash3 />
                 </button>
               </div>
