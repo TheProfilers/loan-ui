@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form';
+import { UserTypes } from '../../types/UserTypes';
 import ReusableModal from '../../ui/ReusableModal';
+import { useNewShopAgent } from './useNewShopAgent';
 
 export default function NewShopAgentModal() {
     const {
@@ -7,8 +9,18 @@ export default function NewShopAgentModal() {
         handleSubmit,
         formState: { errors },
       } = useForm();
+      const {mutate,isPending} = useNewShopAgent();
       const handleNewAgent = (data: any) => {
-        console.log(data);
+        const userdata:UserTypes = {
+          name:data.fullName,
+          email:data.email,
+          phone:data.phone,
+          role:'agent',
+          password:'12345678'
+
+        };
+        mutate(userdata);
+        console.log(userdata);
       };
       const onErrors = (error: any) => {
         console.log(error);
@@ -50,9 +62,24 @@ export default function NewShopAgentModal() {
               <p className="text-red-500 text-xs italic">Enter the Email</p>
             )}
           </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Phone</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Phone"
+              className="input input-bordered"
+             
+              {...register("phone", { required: "Phone is required" })}
+            />
+            {errors.phone && (
+              <p className="text-red-500 text-xs italic">Enter the Phone</p>
+            )}
+          </div>
           
           <div className="form-control mt-6">
-            <button type="submit" className="btn btn-primary">
+            <button disabled={isPending} type="submit" className="btn btn-primary">
               Submit
             </button>
           </div>
