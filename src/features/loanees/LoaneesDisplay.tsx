@@ -2,8 +2,10 @@ import { BsFillEyeFill, BsTrash3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Loader from "../../ui/Loader";
 import { useAllLoanees } from "./useAllLoanees";
+import { useDeleteLoanee } from "./useDeleteLoanee";
 export default function LoaneesDisplay() {
   const { data, isLoading, error } = useAllLoanees();
+  const {mutate,isPending} = useDeleteLoanee();
   if (isLoading) {
     return <Loader />;
   }
@@ -23,7 +25,10 @@ export default function LoaneesDisplay() {
       </div>
     );
   }
-  console.log(data);
+  const handleDelete = async(id: string) => {
+     mutate(id);
+  }
+  //console.log(data);
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -49,7 +54,7 @@ export default function LoaneesDisplay() {
                 <Link to={`/loanees/${loanee._id}`} className="btn btn-sm btn-square btn-success">
                   <BsFillEyeFill />
                 </Link>
-                <button className="btn btn-sm btn-square btn-warning">
+                <button type="button" onClick={()=>handleDelete(loanee._id!)} className="btn btn-sm btn-square btn-warning">
                   <BsTrash3 />
                 </button>
               </div>
