@@ -1,4 +1,5 @@
 import { BsFillEyeFill, BsTrash3 } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import Loader from "../../ui/Loader";
 import { useAllLoanees } from "./useAllLoanees";
 export default function LoaneesDisplay() {
@@ -45,9 +46,9 @@ export default function LoaneesDisplay() {
             <td>{loanee.phoneNumber}</td>
             <td>
               <div className="flex space-x-1">
-                <button className="btn btn-sm btn-square btn-success">
+                <Link to={`/loanees/${loanee._id}`} className="btn btn-sm btn-square btn-success">
                   <BsFillEyeFill />
-                </button>
+                </Link>
                 <button className="btn btn-sm btn-square btn-warning">
                   <BsTrash3 />
                 </button>
