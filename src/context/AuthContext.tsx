@@ -6,13 +6,7 @@ import { UserTypes } from "../types/UserTypes";
 
 const BASE_URL = "localhost:3000";
 
-interface RegisterTypes {
-    fullName: string;
-    phone: string;
-    email: string;
-    password: string;
-    role: string;
-}
+
 interface AuthContextType {
   user: UserTypes | null;
   isLoading: boolean;

@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useNewLoanee } from "./useNewLoanee";
 
 export default function NewLoanModal() {
   const {register, handleSubmit, formState: {errors},reset} = useForm();
   const newLoanModal = useRef<HTMLDialogElement>(null);
+  const {mutate,isPending} = useNewLoanee();
   const openModal = () => {
     newLoanModal.current?.showModal();
   };
@@ -13,6 +15,16 @@ export default function NewLoanModal() {
 
   const handleNewLoanee=(data:any)=>{
     console.log(data);
+    const {firstName,lastName,phoneNumber,idNumber,email,limit} = data;
+    const newLoanee = {
+      firstName,
+      lastName,
+      phoneNumber,
+      idNumber,
+      email,
+      limit
+    }
+    mutate(newLoanee);
     reset();
     closeModal()
   }
@@ -115,7 +127,7 @@ export default function NewLoanModal() {
               </div>
             </div>
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" disabled={isPending} className="btn btn-primary">Submit</button>
             </div>
           </form>
         </div>
