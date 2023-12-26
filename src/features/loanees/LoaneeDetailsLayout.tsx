@@ -12,7 +12,7 @@ export default function LoaneeDetailsLayout() {
     <h3 className="text-xl font-medium">Loanee Details</h3>
     </div>
     <LoaneeDetailsDisplay/>
-    <h1 className='font-medium text-lg px-4 uppercase mt-3'>Loanee Loans</h1>
+    <h1 className='font-medium text-lg px-4 uppercase mt-3 text-orange-500'>Loanee Loans</h1>
     <LoaneeLoans/>
     </>
   )
