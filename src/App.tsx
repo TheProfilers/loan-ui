@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
+import LoanDetails from "./pages/LoanDetails";
 import LoaneeDetails from "./pages/LoaneeDetails";
 import Loanees from "./pages/Loanees";
 import Loans from "./pages/Loans";
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="agents/:id" element={<ShopAgentDetails/>} />
           <Route path="loanees/:id" element={<LoaneeDetails/>} />
           <Route path="loans" element={<Loans/>} />
+          <Route path="loans/:id" element={<LoanDetails/>} />
         </Route>
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
