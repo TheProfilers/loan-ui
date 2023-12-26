@@ -37,10 +37,12 @@ export default function LoaneesDisplay() {
         </thead>
         <tbody>
           {/* row 1 */}
-          <tr className="bg-base-200">
-            <th>1</th>
-            <td>Brian</td>
-            <td>1234567890</td>
+          {
+            data?.map((loanee, index) => (
+              <tr className="bg-base-200" key={index} >
+            <th>{index + 1}</th>
+            <td>{loanee.firstName}</td>
+            <td>{loanee.phoneNumber}</td>
             <td>
               <div className="flex space-x-1">
                 <button className="btn btn-sm btn-square btn-success">
@@ -52,6 +54,8 @@ export default function LoaneesDisplay() {
               </div>
             </td>
           </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>
