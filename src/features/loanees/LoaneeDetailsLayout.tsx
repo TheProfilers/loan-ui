@@ -2,6 +2,8 @@ import BackButton from '../../ui/BackButton'
 import LoaneeDetailsDisplay from './LoaneeDetailsDisplay'
 
 export default function LoaneeDetailsLayout() {
+  
+
   return (
     <>
     <div className="flex justify-between">
