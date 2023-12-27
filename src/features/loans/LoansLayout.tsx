@@ -1,9 +1,11 @@
 import { BsFillEyeFill, BsTrash3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import Loader from "../../ui/Loader";
 import { useAllLoans } from "./useAllLoans";
 
 export default function LoansLayout() {
+  const {storedUser} = useAuth();
     const { data, isLoading, error } = useAllLoans();
     if (isLoading) return <Loader/>;
     if (error) return <div>{error.message}</div>;
@@ -34,9 +36,9 @@ export default function LoansLayout() {
                     <Link to={`/loans/${loan._id}`} className="btn btn-sm btn-square btn-success">
                       <BsFillEyeFill />
                     </Link>
-                    <button  className="btn btn-sm btn-square btn-warning">
+                   {storedUser?.role === 'admin' && <button  className="btn btn-sm btn-square btn-warning">
                       <BsTrash3 />
-                    </button>
+                    </button>}
                   </div>
                 </td>
               </tr>
