@@ -34,8 +34,9 @@ export default function App() {
             <AppLayout />
           </ProtectedRoute>
         }>
-          <Route path="/" element={<Home />} />
-          <Route path="/loanees" element={<Loanees />} />
+          <Route path="/" element={<Loanees />} />
+          <Route path="/home" element={<Home />} />
+          
           <Route path="/agents" element={<ShopAgents/>} />
           <Route path="agents/:id" element={<ShopAgentDetails/>} />
           <Route path="loanees/:id" element={<LoaneeDetails/>} />
