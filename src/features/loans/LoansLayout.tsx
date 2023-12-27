@@ -3,14 +3,19 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Loader from "../../ui/Loader";
 import { useAllLoans } from "./useAllLoans";
+import { useDeleteLoan } from "./useDeleteLoan";
 
 export default function LoansLayout() {
   const {storedUser} = useAuth();
     const { data, isLoading, error } = useAllLoans();
+    const {mutate,isPending} = useDeleteLoan();
     if (isLoading) return <Loader/>;
     if (error) return <div>{error.message}</div>;
     if (!data) return <div>Something went wrong</div>;
-    console.log(data);
+    //console.log(data);
+    const handleDelete = async(id: string) => {
+      mutate(id);
+    }
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -36,7 +41,7 @@ export default function LoansLayout() {
                     <Link to={`/loans/${loan._id}`} className="btn btn-sm btn-square btn-success">
                       <BsFillEyeFill />
                     </Link>
-                   {storedUser?.role === 'admin' && <button  className="btn btn-sm btn-square btn-warning">
+                   {storedUser?.role === 'admin' && <button onClick={()=>handleDelete(loan._id)} disabled={isPending}  className="btn btn-sm btn-square btn-warning">
                       <BsTrash3 />
                     </button>}
                   </div>
