@@ -1,26 +1,24 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { newLoan } from "../../services/loanapi";
+import { deleteLoan } from "../../services/loanapi";
 
-export function useNewLoan(){
-    const queryClient = useQueryClient()
+export function useDeleteLoan(){
+    const queryClient = useQueryClient();
     const {mutate,isPending} = useMutation({
-        mutationFn:newLoan,
+        mutationFn:deleteLoan,
         onSuccess:()=>{
             queryClient.invalidateQueries();
             Swal.fire({
-                title:'Success',
-                text:'Loan created successfully',
                 icon:'success',
-                confirmButtonText:'Ok'
+                title:'Loan deleted successfully'
+            
             })
         },
-        onError:(error:any)=>{
+        onError:(error:Error)=>{
             Swal.fire({
-                title:'Error',
-                text:error.message,
                 icon:'error',
-                confirmButtonText:'Ok'
+                title:'Oops...',
+                text:error.message
             })
         }
     })

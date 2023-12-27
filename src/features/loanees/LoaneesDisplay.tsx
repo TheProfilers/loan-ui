@@ -1,11 +1,14 @@
 import { BsFillEyeFill, BsTrash3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import Loader from "../../ui/Loader";
 import { useAllLoanees } from "./useAllLoanees";
 import { useDeleteLoanee } from "./useDeleteLoanee";
 export default function LoaneesDisplay() {
+  const {storedUser} = useAuth();
   const { data, isLoading, error } = useAllLoanees();
   const {mutate,isPending} = useDeleteLoanee();
+
   if (isLoading) {
     return <Loader />;
   }
@@ -54,9 +57,9 @@ export default function LoaneesDisplay() {
                 <Link to={`/loanees/${loanee._id}`} className="btn btn-sm btn-square btn-success">
                   <BsFillEyeFill />
                 </Link>
-                <button type="button" disabled={isPending} onClick={()=>handleDelete(loanee._id!)} className="btn btn-sm btn-square btn-warning">
+               {storedUser?.role === 'admin' && <button type="button" disabled={isPending} onClick={()=>handleDelete(loanee._id!)} className="btn btn-sm btn-square btn-warning">
                   <BsTrash3 />
-                </button>
+                </button>}
               </div>
             </td>
           </tr>

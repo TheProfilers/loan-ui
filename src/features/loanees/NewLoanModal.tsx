@@ -35,7 +35,7 @@ export default function NewLoanModal() {
   return (
     <>
      
-      <button type="button" className="btn" onClick={openModal}>
+      <button type="button" className="btn bg-green-500 hover:bg-green-400 text-white font-bold" onClick={openModal}>
         New Loanee
       </button>
       <dialog ref={newLoanModal} className="modal">
