@@ -1,6 +1,43 @@
+import BackButton from "../../ui/BackButton";
+import Loader from "../../ui/Loader";
+import UpdateSettingsModal from "./UpdateSettingsModal";
+import { useSettings } from "./useSettings";
 
 export default function SettingsLayout() {
+    const {data,isLoading,error} = useSettings();
+    if(isLoading) return <Loader/>
+
+    if(error) return <p className="text-red-500 text-lg italic">{error.message}</p>
+
+    if(!data) return <p className="text-red-500 text-lg italic">No Settings Found</p>
+    console.log(data);
   return (
-    <div>SettingsLayout</div>
+    <>
+    <div className="flex justify-between items-start">
+    <BackButton/>
+    <UpdateSettingsModal/>
+    </div>
+    <div>
+    <form className="w-full max-w-xs mx-6 mt-4">
+        <div className="md:flex md:items-center mb-6">
+          <div className="md:w-80">
+            <label className="block font-medium text-lg md:text-start mb-1 md:mb-0 pr-4">
+              Loan Limit
+            </label>
+          </div>
+          <div className="md:w-2/3">
+            <input
+              defaultValue={data.loansLimit}
+              
+              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              type="number"
+            //   onBlur={(e) => handleUpdateSetting(e, "maxBookingLength")}
+            />
+          </div>
+        </div>
+       
+      </form>
+    </div>
+    </>
   )
 }
