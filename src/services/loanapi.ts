@@ -29,7 +29,7 @@ export async function getLoaneeLoans(loanee:string){
 }
 export async function getLoanById(id: string) {
   try {
-    const response = await fetch(`${BASE_URL}loans/${id}`, {
+    const response = await fetch(`${BASE_URL}loans/loan/${id}`, {
       headers: {
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token")!)}`,
       },
