@@ -21,15 +21,21 @@ export default function LoanDetailsLayout() {
       <div className="flex justify-between">
         <BackButton />
 
-        {loan.loanAmount !== 0 && <RepayLoanModal />}
+        {loan.loanAmount !== loan.amountPaid && <RepayLoanModal />}
       </div>
       <h1 className="text-lg font-medium text-orange-500 uppercase">
         Loan Information
       </h1>
 
-      <div className="grid grid-cols-1 shadow p-3">
+      <div className="md:flex justify-between shadow p-3">
+      <div>
       <ColumnText title="Loan Amount" text={loan.loanAmount.toString()} />
       <ColumnText title="Loan Reason" text={loan.loanReason} />
+      </div>
+      <div>
+      <ColumnText title="Loan Balance" text={(loan.loanAmount - loan.amountPaid).toString()} />
+      <ColumnText title="Amount Paid" text={loan.amountPaid.toString()} />
+      </div>
       </div>
 
       <h1 className="text-lg font-medium text-orange-500 uppercase">
