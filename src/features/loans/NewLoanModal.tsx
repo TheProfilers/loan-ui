@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { LoanType } from "../../types/LoanType";
 import ReusableModal from "../../ui/ReusableModal";
+import { useNewLoan } from "./useNewLoan";
 
 export default function NewLoanModal() {
   const {id} = useParams<{id:string}>();
@@ -11,7 +12,9 @@ export default function NewLoanModal() {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
+  const {mutate,isPending} = useNewLoan();
   const handleNewLoan = (data: any) => {
     const loanData:LoanType = {
       loanAmount: data.loanAmount,
@@ -21,8 +24,8 @@ export default function NewLoanModal() {
       servedBy: storedUser?.id!,
 
     }
-    console.log(loanData);
-    console.log(storedUser);
+    mutate(loanData);
+    reset();
     
   };
   const onErrors = (error: any) => {
@@ -64,7 +67,7 @@ export default function NewLoanModal() {
         </div>
 
         <div className="form-control mt-6">
-          <button type="submit" className="btn btn-primary">
+          <button disabled={isPending} type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>
