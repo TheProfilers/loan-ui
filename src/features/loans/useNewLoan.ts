@@ -15,10 +15,10 @@ export function useNewLoan(){
                 confirmButtonText:'Ok'
             })
         },
-        onError:()=>{
+        onError:(error:any)=>{
             Swal.fire({
                 title:'Error',
-                text:'An error occured',
+                text:error.message,
                 icon:'error',
                 confirmButtonText:'Ok'
             })
