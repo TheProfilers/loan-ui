@@ -1,4 +1,4 @@
-import { BsBriefcase, BsFillPeopleFill, BsHouseDoor } from "react-icons/bs";
+import { BsBriefcase, BsFillPeopleFill, BsGear, BsHouseDoor } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 export default function SideNav() {
     const routes =[
@@ -16,7 +16,12 @@ export default function SideNav() {
           label: "Agents",
           path: "/agents",
           icon: <BsFillPeopleFill />
-      }
+      },
+      {
+        label: "Settings",
+        path: "/settings",
+        icon: <BsGear />
+    }
     ]
   return (
     <div className="drawer-side">
