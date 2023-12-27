@@ -1,4 +1,4 @@
-import { BsBriefcase, BsFillPeopleFill, BsGear, BsHouseDoor } from "react-icons/bs";
+import { BsBriefcase, BsFillBagCheckFill, BsFillPeopleFill, BsGear, BsHouseDoor } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 export default function SideNav() {
     const routes =[
@@ -17,6 +17,11 @@ export default function SideNav() {
           path: "/agents",
           icon: <BsFillPeopleFill />
       },
+      {
+        label: "Loans",
+        path: "/loans",
+        icon: <BsFillBagCheckFill />
+    },
       {
         label: "Settings",
         path: "/settings",
