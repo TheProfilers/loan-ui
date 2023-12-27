@@ -1,6 +1,7 @@
 export interface LoanType{
-    _id: string;
+    _id?: string;
     loanAmount:number
+    amountPaid:number
     totalLoanAmount?:number
     loanReason:string
     servedBy:string
