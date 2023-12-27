@@ -1,7 +1,6 @@
 import { UpdateSettingsType } from "../../services/settingsapi";
 import BackButton from "../../ui/BackButton";
 import Loader from "../../ui/Loader";
-import UpdateSettingsModal from "./UpdateSettingsModal";
 import { useSettings } from "./useSettings";
 import { useUpdateSettings } from "./useUpdateSettings";
 
@@ -27,7 +26,7 @@ export default function SettingsLayout() {
     <>
     <div className="flex justify-between items-start">
     <BackButton/>
-    <UpdateSettingsModal/>
+    <h1 className="font-medium text-lg uppercase">Fare Loans Settings</h1>
     </div>
     <div>
     <form className="w-full max-w-xs mx-6 mt-4">
