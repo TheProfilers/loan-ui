@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { subDays } from "date-fns";
 import { useSearchParams } from "react-router-dom";
-import { getLoansAfterDate } from "../../services/loaneesapi";
+
+import { getLoansAfterDate } from "../../services/loanapi";
 import { LoanType } from "../../types/LoanType";
 
 export function useLoansAfterDate() {
@@ -13,5 +14,6 @@ export function useLoansAfterDate() {
         queryFn:()=>getLoansAfterDate(queryDate),
 
     })
+    console.log(err)
     return {recentLoans,isFetching,err,numDays};
 }
