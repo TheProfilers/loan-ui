@@ -9,18 +9,22 @@ export function useNewLoan(){
         onSuccess:()=>{
             queryClient.invalidateQueries();
             Swal.fire({
-                title:'Success',
-                text:'Loan created successfully',
-                icon:'success',
-                confirmButtonText:'Ok'
+                icon:"success",
+                title:"Loan awarded successfully",
+                toast:true,
+                position:"top-right",
+                showConfirmButton:false,
+                timer:3000
             })
         },
         onError:(error:any)=>{
             Swal.fire({
-                title:'Error',
-                text:error.message,
-                icon:'error',
-                confirmButtonText:'Ok'
+                icon:"error",
+                title:error.message,
+                toast:true,
+                position:"top-right",
+                showConfirmButton:false,
+                timer:3000
             })
         }
     })
