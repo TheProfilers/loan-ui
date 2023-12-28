@@ -6,4 +6,5 @@ export interface LoanType{
     loanReason:string
     servedBy:string
     loanee:string
+    created_at?: string;
 }
