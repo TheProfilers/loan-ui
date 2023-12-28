@@ -11,19 +11,23 @@ export function useRepayLoan(){
         onSuccess:()=>{
             queryClient.invalidateQueries();
             Swal.fire({
-                title:'Success',
-                text:'Loan repaid successfully',
-                icon:'success',
-                confirmButtonText:'Ok'
+                icon:"success",
+                title:"Loan Repaid successfully",
+                toast:true,
+                position:"top-right",
+                showConfirmButton:false,
+                timer:3000
             })
            
         },
-        onError:()=>{
+        onError:(error:any)=>{
             Swal.fire({
-                title:'Error',
-                text:'An error occured',
-                icon:'error',
-                confirmButtonText:'Ok'
+                icon:"error",
+                title:error.message,
+                toast:true,
+                position:"top-right",
+                showConfirmButton:false,
+                timer:3000
             })
         }
     })
