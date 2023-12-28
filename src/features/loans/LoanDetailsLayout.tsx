@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import BackButton from "../../ui/BackButton";
 import ColumnText from "../../ui/ColumnText";
 import Loader from "../../ui/Loader";
+import DownloadLoan from "./DownloadLoan";
 import RepayLoanModal from "./RepayLoanModal";
 import { useLoanDetails } from "./useLoanDetails";
 
@@ -62,7 +63,12 @@ export default function LoanDetailsLayout() {
         <ColumnText title="Phone Number" text={loan.servedBy.phone!} />
         <ColumnText title="Email" text={loan.servedBy.email} />
       </div>
-     <Link to={`/download/${loan._id}`} className="block text-center mt-3">Download PDF</Link>
+     
+      <PDFDownloadLink document={<DownloadLoan loanData={loan} />} fileName="somename.pdf">
+      {({ blob, url, loading, error }) =>
+        loading ? 'Loading document...' : 'Download now!'
+      }
+    </PDFDownloadLink>
     </>
   );
 }

@@ -1,48 +1,64 @@
-import { Document, PDFViewer, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
-import Loader from '../../ui/Loader';
-import { useLoanDetails } from './useLoanDetails';
+import { Document, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
+import { LoaneTypes } from '../../types/LoanTypes';
+
 const styles = StyleSheet.create({
-    page: {
-      backgroundColor: '#E4E4E4'
-    },
-    section: {
-      margin: 10,
-      padding: 1,
-      flexGrow: 1
-    },
-    headerText: {
-        fontSize: '1.5rem',
-        fontWeight: 'bold',
-        color: '#ff9900', /* Orange color */
-        textTransform: 'uppercase',
-      },
-   
-  });
-export default function DownloadLoan() {
-    const { loan, error, isLoading } = useLoanDetails();
-  if (isLoading) {
-    return <Loader />;
-  }
-  if (error) {
-    return <p className="text-red-500">{error.message}</p>;
-  }
-  if (!loan) {
-    return <p>No loan found</p>;
-  }
-  console.log(loan);
+  body: {
+    paddingTop: 35,
+    paddingBottom: 65,
+    paddingHorizontal: 35,
+  },
+  title: {
+    fontSize: 24,
+    textAlign: 'center',
+    
+  },
+  author: {
+    fontSize: 12,
+    textAlign: 'center',
+    marginBottom: 40,
+  },
+  subtitle: {
+    fontSize: 18,
+    margin: 12,
+    fontFamily: 'Oswald'
+  },
+  text: {
+    margin: 12,
+    fontSize: 14,
+    textAlign: 'justify',
+    
+  },
+  image: {
+    marginVertical: 15,
+    marginHorizontal: 100,
+  },
+  header: {
+    fontSize: 12,
+    marginBottom: 20,
+    textAlign: 'center',
+    color: 'grey',
+  },
+  pageNumber: {
+    position: 'absolute',
+    fontSize: 12,
+    bottom: 30,
+    left: 0,
+    right: 0,
+    textAlign: 'center',
+    color: 'grey',
+  },
+});
+
+export default function DownloadLoan({loanData}: {loanData: LoaneTypes}) {
+    console.log(loanData);
   return (
-    <PDFViewer className='h-screen w-screen'>
     <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text  >Section {loan.amountPaid}</Text>
-        <Text style={styles.headerText}>Loan Information</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Section #2</Text>
+    <Page>
+    <View style={{ color: 'white', textAlign: 'center', margin: 30 }}>
+        <Text>Section #1</Text>
       </View>
     </Page>
   </Document>
-  </PDFViewer>
+
   )
 }
