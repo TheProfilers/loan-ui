@@ -1,10 +1,10 @@
 import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns"
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
-import { LoanType } from "../../types/LoanType"
+import { LoaneTypes } from "../../types/LoanTypes"
 
 
 
-export default function HomeGraph({loans,numDays}:{loans:LoanType[],numDays:number}) {
+export default function HomeGraph({loans,numDays}:{loans:LoaneTypes[],numDays:number}) {
   const alldates = eachDayOfInterval({
     start: subDays(new Date(), numDays - 1),
     end: new Date(),
@@ -12,8 +12,8 @@ export default function HomeGraph({loans,numDays}:{loans:LoanType[],numDays:numb
   const data = alldates.map((date) => {
     return{
       label:format(date,'MMM dd'),
-      totalSales:loans.filter((loan)=>isSameDay(date,new Date(loan.created_at!))).reduce((acc,loan)=>acc+loan.loanAmount,0),
-      extrasSales:loans.filter((loan)=>isSameDay(date,new Date(loan.created_at!))).reduce((acc,loan)=>acc+loan.loanAmount,0),
+      totalLoans:loans.filter((loan)=>isSameDay(date,new Date(loan.createdAt!))).reduce((acc,loan)=>acc+loan.loanAmount,0),
+      totalPaid:loans.filter((loan)=>isSameDay(date,new Date(loan.createdAt!))).reduce((acc,loan)=>acc+loan.loanAmount,0),
     }
   })
   return (
@@ -37,7 +37,7 @@ export default function HomeGraph({loans,numDays}:{loans:LoanType[],numDays:numb
             <XAxis dataKey="label" />
             <YAxis />
             <Area
-              dataKey="totalSales"
+              dataKey="totalLoans"
               type="monotone"
               stroke="red"
               fill="orange"
@@ -45,7 +45,7 @@ export default function HomeGraph({loans,numDays}:{loans:LoanType[],numDays:numb
               unit="$"
             />
             <Area
-              dataKey="extrasSales"
+              dataKey="totalPaid"
               type="monotone"
               stroke="orange"
               fill="blue"

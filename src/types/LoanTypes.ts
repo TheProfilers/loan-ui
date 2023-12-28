@@ -9,4 +9,5 @@ export interface LoaneTypes{
     loanReason:string
     servedBy:UserTypes
     loanee:LoaneesType
+    createdAt?:string
 }
