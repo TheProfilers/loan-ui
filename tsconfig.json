@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src","html2pdf.js.d.ts","dom-to-image.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
