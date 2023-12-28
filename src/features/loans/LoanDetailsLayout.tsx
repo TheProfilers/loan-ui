@@ -1,13 +1,12 @@
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Link } from "react-router-dom";
 import BackButton from "../../ui/BackButton";
 import ColumnText from "../../ui/ColumnText";
 import Loader from "../../ui/Loader";
-import DownloadLoan from "./DownloadLoan";
 import RepayLoanModal from "./RepayLoanModal";
 import { useLoanDetails } from "./useLoanDetails";
 
 export default function LoanDetailsLayout() {
-  
+ 
   const { loan, error, isLoading } = useLoanDetails();
   if (isLoading) {
     return <Loader />;
@@ -21,6 +20,8 @@ export default function LoanDetailsLayout() {
   console.log(loan);
   return (
     <>
+    <div className='actual-receipt'>
+      
       <div className="flex justify-between">
         <BackButton />
 
@@ -64,11 +65,9 @@ export default function LoanDetailsLayout() {
         <ColumnText title="Email" text={loan.servedBy.email} />
       </div>
      
-      <PDFDownloadLink document={<DownloadLoan loanData={loan} />} fileName="somename.pdf">
-      {({ blob, url, loading, error }) =>
-        loading ? 'Loading document...' : 'Download now!'
-      }
-    </PDFDownloadLink>
+      
+    </div>
+    <Link to={`/download/${loan._id}`} className="btn btn-primary">DownLoad Link</Link>
     </>
   );
 }
