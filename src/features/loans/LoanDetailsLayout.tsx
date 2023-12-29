@@ -56,12 +56,12 @@ export default function LoanDetailsLayout() {
         Loanee Information
       </h1>
 
-      <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
+     { loan.loanee ?  <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
         <ColumnText title="First name" text={loan.loanee.firstName} />
         <ColumnText title="Last name" text={loan.loanee.lastName} />
         <ColumnText title="Id Number" text={loan.loanee.idNumber} />
         <ColumnText title="Phone Number" text={loan.loanee.phoneNumber} />
-      </div>
+      </div> : <div>Not Available</div>}
       <h1 className="text-lg font-medium text-orange-500 uppercase py-1">
         Agent Information
       </h1>
