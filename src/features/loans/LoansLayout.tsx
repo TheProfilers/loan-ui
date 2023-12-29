@@ -78,7 +78,7 @@ export default function LoansLayout() {
             {currentRecords?.map((loan, index) => (
               <tr className="bg-base-200" key={index}>
                 <th>{index + 1}</th>
-                <td>{loan.loanee.firstName}</td>
+                {loan.loanee ? <td>{loan.loanee.firstName}</td> : <td>Not Available</td>}
                 <td>{loan.loanAmount}</td>
                 <td>
                   <div className="flex space-x-1">
