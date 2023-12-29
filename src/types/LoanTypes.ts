@@ -10,4 +10,7 @@ export interface LoaneTypes{
     servedBy:UserTypes
     loanee:LoaneesType
     createdAt?:string
+    updatedAt?:string
+    receivedBy?:UserTypes
+
 }
