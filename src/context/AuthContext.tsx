@@ -4,7 +4,8 @@ import { createContext, useContext, useReducer } from "react";
 
 import { UserTypes } from "../types/UserTypes";
 
-const BASE_URL = "localhost:3000";
+// const BASE_URL = "localhost:3000";
+const BASE_URL = "https://kalulu-857b24d77543.herokuapp.com"
 
 
 interface AuthContextType {
@@ -88,7 +89,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       payload: null,
     });
     try {
-     const res = fetch(`http://${BASE_URL}/auth/signin`, {
+     const res = fetch(`${BASE_URL}/auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
