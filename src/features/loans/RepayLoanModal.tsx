@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 import { useAuth } from '../../context/AuthContext';
 import { RepayLoanType } from '../../services/loanapi';
 import ReusableModal from '../../ui/ReusableModal';
+import { useLoanDetails } from './useLoanDetails';
 import { useRepayLoan } from './useRepayLoan';
 
 export default function RepayLoanModal() {
   const {storedUser} = useAuth();
+  const{loan} = useLoanDetails();
   const {
     register,
     handleSubmit,
@@ -14,6 +17,19 @@ export default function RepayLoanModal() {
   } = useForm();
   const {mutate,isPending} = useRepayLoan();
   const handleRepayLoan = (data: any) => {
+    if(!loan) return;
+    if(data.loanAmount > loan.loanAmount - loan.amountPaid){
+      
+      Swal.fire({
+        icon:"error",
+        title:"Loan Amount cannot be greater than Loan Balance",
+        toast:true,
+        position:"top-right",
+        showConfirmButton:false,
+        timer:3000
+    })
+      return;
+    }
     const loanData:RepayLoanType = {
       amountPaid: data.loanAmount,
       receivedBy: storedUser?.id!,
