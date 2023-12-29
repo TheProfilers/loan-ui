@@ -13,7 +13,7 @@ export default function HomeGraph({loans,numDays}:{loans:LoaneTypes[],numDays:nu
     return{
       label:format(date,'MMM dd'),
       totalLoans:loans.filter((loan)=>isSameDay(date,new Date(loan.createdAt!))).reduce((acc,loan)=>acc+loan.loanAmount,0),
-      totalPaid:loans.filter((loan)=>isSameDay(date,new Date(loan.createdAt!))).reduce((acc,loan)=>acc+loan.loanAmount,0),
+      totalPaid:loans.filter((loan)=>isSameDay(date,new Date(loan.createdAt!))).reduce((acc,loan)=>acc+loan.amountPaid,0),
     }
   })
   return (
