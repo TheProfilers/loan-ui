@@ -1,5 +1,6 @@
 
-const BASE_URL = "http://localhost:3000/";
+// const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "https://kalulu-857b24d77543.herokuapp.com/"
 
 export async function getSettings(){
     try {
