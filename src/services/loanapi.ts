@@ -78,16 +78,21 @@ export async function newLoan(loan: LoanType) {
     throw new Error(error.message);
   }
 }
+export interface RepayLoanType{
+  amountPaid:number
+  receivedBy:string
+}
 
-export async function repayLoan(id: string, amount: number) {
+export async function repayLoan(id: string, repayData: RepayLoanType) {
   try {
+    console.log(repayData)
     const response = await fetch(`${BASE_URL}loans/pay/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token")!)}`,
       },
-      body: JSON.stringify({ amount }),
+      body: JSON.stringify(repayData),
     });
     const data = await response.json();
     if (data.statusCode === 500) {

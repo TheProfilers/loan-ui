@@ -1,8 +1,11 @@
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../../context/AuthContext';
+import { RepayLoanType } from '../../services/loanapi';
 import ReusableModal from '../../ui/ReusableModal';
 import { useRepayLoan } from './useRepayLoan';
 
 export default function RepayLoanModal() {
+  const {storedUser} = useAuth();
   const {
     register,
     handleSubmit,
@@ -11,7 +14,12 @@ export default function RepayLoanModal() {
   } = useForm();
   const {mutate,isPending} = useRepayLoan();
   const handleRepayLoan = (data: any) => {
-    mutate(data.loanAmount)
+    const loanData:RepayLoanType = {
+      amountPaid: data.loanAmount,
+      receivedBy: storedUser?.id!,
+    }
+    mutate(loanData)
+    console.log(loanData);
     reset();
   };
   const onErrors = (error: any) => {
