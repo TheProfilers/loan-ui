@@ -8,7 +8,7 @@ export interface LoaneTypes{
     totalLoanAmount?:number
     loanReason:string
     servedBy:UserTypes
-    loanee:LoaneesType
+    loanee?:LoaneesType
     createdAt?:string
     updatedAt?:string
     receivedBy?:UserTypes
