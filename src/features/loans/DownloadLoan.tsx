@@ -85,11 +85,11 @@ export default function DownloadLoan() {
         Agent Information
       </h1>
 
-      <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
+      {loan.servedBy ? <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
         <ColumnText title="Full Name" text={loan.servedBy.name} />
         <ColumnText title="Phone Number" text={loan.servedBy.phone!} />
         <ColumnText title="Email" text={loan.servedBy.email} />
-      </div>
+      </div> : <div>Not Available</div>}
      
       
     </div>
