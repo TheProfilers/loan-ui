@@ -14,7 +14,7 @@ export default function SideNav() {
             roles: ["admin"],
         },
         {
-            label: "Loanees",
+            label: "Borrowers",
             path: "/",
             icon: <BsBriefcase />
         },
