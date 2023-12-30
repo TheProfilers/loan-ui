@@ -66,11 +66,11 @@ export default function LoanDetailsLayout() {
         Agent Information
       </h1>
 
-      <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
+      {loan.servedBy? <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
         <ColumnText title="Full Name" text={loan.servedBy.name} />
         <ColumnText title="Phone Number" text={loan.servedBy.phone!} />
         <ColumnText title="Email" text={loan.servedBy.email} />
-      </div>
+      </div> : <div>Not Available</div>}
 
      {loan.receivedBy && <>
      
@@ -78,11 +78,11 @@ export default function LoanDetailsLayout() {
         Payment Recipient Details
       </h1>
 
-      <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
+      {loan.receivedBy ? <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
         <ColumnText title="Full Name" text={loan.receivedBy.name} />
         <ColumnText title="Phone Number" text={loan.receivedBy.phone!} />
         <ColumnText title="Email" text={loan.receivedBy.email} />
-      </div>
+      </div> : <div>Not Available</div>}
      </>}
      
       
