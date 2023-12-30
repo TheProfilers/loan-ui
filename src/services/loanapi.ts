@@ -118,6 +118,7 @@ export async function getAllLoans() {
       },
     });
     const data = await response.json();
+    console.log(data)
     if (data.statusCode === 500) {
       throw new Error(data.message);
     }

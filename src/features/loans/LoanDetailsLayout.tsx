@@ -36,7 +36,7 @@ export default function LoanDetailsLayout() {
       <ColumnText title="Date Borrowed" text={formatDate(loan.createdAt!)} />
       {loan.receivedBy && <ColumnText title="Date Paid" text={formatDate(loan.updatedAt!)} />}
       </div>
-      <div className="md:flex justify-between shadow p-3">
+      <div className="flex justify-between shadow p-3">
         <div>
         
           <ColumnText title="Loan Amount" text={loan.loanAmount.toString()} />
