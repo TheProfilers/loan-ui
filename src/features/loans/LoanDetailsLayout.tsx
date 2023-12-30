@@ -75,7 +75,7 @@ export default function LoanDetailsLayout() {
      {loan.receivedBy && <>
      
       <h1 className="text-lg font-medium text-orange-500 uppercase py-1">
-        Payment Recipient
+        Payment Recipient Details
       </h1>
 
       <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
