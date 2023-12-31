@@ -20,6 +20,7 @@ export default function SettingsLayout() {
             id: data._id!
         }
         mutate(settingData);
+        
 
     }
   return (
