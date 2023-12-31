@@ -9,21 +9,23 @@ export function useDeleteShopAgent(){
         onSuccess:()=>{
             queryClient.invalidateQueries();
             Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Your work has been saved",
-                showConfirmButton: false,
-                timer: 1500
-              });
+                icon:"success",
+                title:"Agent deleted successfully",
+                toast:true,
+                position:"top-right",
+                showConfirmButton:false,
+                timer:3000
+            })
         },
         onError:(error:any)=>{
             Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: error.message,
-                showConfirmButton: false,
-                timer: 1500
-              });
+                icon:"error",
+                title:error.message,
+                toast:true,
+                position:"top-right",
+                showConfirmButton:false,
+                timer:3000
+            })
         }
     })
     return {mutate,isPending}
