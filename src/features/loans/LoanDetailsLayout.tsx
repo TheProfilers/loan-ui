@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import BackButton from "../../ui/BackButton";
 import ColumnText from "../../ui/ColumnText";
 import Loader from "../../ui/Loader";
-import { formatDate } from "../../utils/helpers";
+import { formatCurrency, formatDate } from "../../utils/helpers";
 import RepayLoanModal from "./RepayLoanModal";
 import { useLoanDetails } from "./useLoanDetails";
 
@@ -39,16 +39,16 @@ export default function LoanDetailsLayout() {
       <div className="flex justify-between shadow p-3">
         <div>
         
-          <ColumnText title="Loan Amount" text={loan.loanAmount.toString()} />
+          <ColumnText title="Loan Amount" text={formatCurrency(loan.loanAmount).toString()} />
           <ColumnText title="Loan Reason" text={loan.loanReason} />
         </div>
         <div>
         
           <ColumnText
             title="Loan Balance"
-            text={(loan.loanAmount - loan.amountPaid).toString()}
+            text={formatCurrency(loan.loanAmount - loan.amountPaid).toString()}
           />
-          <ColumnText title="Amount Paid" text={loan.amountPaid.toString()} />
+          <ColumnText title="Amount Paid" text={formatCurrency(loan.amountPaid).toString()} />
         </div>
       </div>
 

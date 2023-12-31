@@ -6,5 +6,7 @@ export interface UserTypes {
     role: string;
     phone?: string;
     password?: string;
+    lastLogin?: string;
+
 
 }
