@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { BsJustify } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function TopNav() {
@@ -28,7 +28,12 @@ const handleLogout = () => {
           </div>
         </div>
         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-          
+        <li>
+          <Link to="/accounts" className="">
+            Account Settings
+            
+          </Link>
+          </li>
           <li onClick={handleLogout} ><a>Logout</a></li>
         </ul>
       </div>
