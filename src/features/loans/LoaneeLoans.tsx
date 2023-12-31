@@ -22,10 +22,10 @@ export default function LoaneeLoans() {
     const totalLoansAmount = allLoans.reduce((acc:number,loan:LoaneTypes)=>acc+loan.loanAmount!,0)
     if(!loanee) return <div>Something went wrong</div>
     //console.log(loans)
+
+    const activeLoans = loans.filter((loan:LoaneTypes)=>loan.totalLoanAmount !== 0)
     const uniqueAgent = [...new Set(loans.map((loan:LoaneTypes)=>loan.servedBy.name!))]
-    // //console.log(uniqueAgentLoans)
-    // const agentLoans = uniqueAgent.map((agentId:string)=>loans.filter((loan:LoaneTypes)=>loan.servedBy._id === agentId))
-    // console.log(agentLoans)
+    
     const formattedLoans = uniqueAgent.map((agentId:string)=>({
       agentId,
       loans:loans.filter((loan:LoaneTypes)=>loan.servedBy.name === agentId)
@@ -38,7 +38,7 @@ export default function LoaneeLoans() {
     </div>}
     
     <div className="shadow p-4 rounded-sm">
-    <ColumnText title="Total Loans" text={loans.length.toString()}/>
+    <ColumnText title="Total Loans" text={activeLoans.length.toString()}/>
     <div className="flex justify-between">
     <ColumnText title="Total Amount" text={formatCurrency(totalAmount).toString()}/>
     <ColumnText title="Available Limit" text={formatCurrency(loanee.limit - totalAmount).toString()}/>
@@ -59,7 +59,7 @@ export default function LoaneeLoans() {
         </thead>
         <tbody>
           {
-            loans.map((loan:LoaneTypes,index)=>(
+            activeLoans.map((loan:LoaneTypes,index)=>(
               <tr key={index}>
                 <td>{loan.servedBy.name}</td>
                 <td>{new Date(loan.createdAt!).toLocaleString()}</td>
