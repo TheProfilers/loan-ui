@@ -4,6 +4,7 @@ import { PasswordType } from "../../services/apiAuth";
 import BackButton from "../../ui/BackButton";
 import ColumnText from "../../ui/ColumnText";
 import { formatDate } from "../../utils/helpers";
+import AccountsLoans from "./AccountsLoans";
 import { useChangePassword } from "./useChangePassword";
 
 export default function AccountsLayout() {
@@ -30,14 +31,9 @@ export default function AccountsLayout() {
   return (
    <>
    <BackButton/>
-    <div className="flex flex-col justify-center items-center  h-[calc(100vh-8rem)]">
-      <div className="w-24 h-24 rounded-full mb-4 flex justify-center items-center">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-          alt=""
-          className="w-full h-full rounded-full object-cover"
-        />
-      </div>
+    <div className="flex justify-center w-full  ">
+     
+      
       <div className="shadow p-4 rounded w-full max-w-lg">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           <ColumnText title="Name" text={storedUser?.name!} />
@@ -65,7 +61,10 @@ export default function AccountsLayout() {
           {errors.newPassword && <p className="text-red-500 text-xs italic">Enter Password</p>}
         </form>
       </div>
+      
     </div>
+    <h3 className='font-medium text-lg my-3 text-orange-500'>Your Loans</h3>
+    <AccountsLoans/>
    </>
   );
 }
