@@ -7,6 +7,7 @@ export default function NewShopAgentModal() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const { mutate, isPending } = useNewShopAgent();
@@ -19,6 +20,7 @@ export default function NewShopAgentModal() {
       password: "12345678",
     };
     mutate(userdata);
+    reset();
     console.log(userdata);
   };
   const onErrors = (error: any) => {
