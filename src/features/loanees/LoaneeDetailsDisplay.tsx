@@ -31,7 +31,7 @@ export default function LoaneeDetailsDisplay() {
           </thead>
           <tbody>
             <tr>
-              <td>{loanee.firstName}</td>
+              <td>{loanee.firstName} {loanee.lastName}</td>
               <td>{loanee.idNumber}</td>
               <td>{loanee.phoneNumber}</td>
               <td>{formatCurrency(loanee.limit)}</td>
