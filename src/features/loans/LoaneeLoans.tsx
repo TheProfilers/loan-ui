@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { LoaneTypes } from "../../types/LoanTypes"
 import ColumnText from "../../ui/ColumnText"
 import Loader from "../../ui/Loader"
+import { formatCurrency } from "../../utils/helpers"
 import { useLoaneeDetails } from "../loanees/useLoaneeDetails"
 import { useSettings } from "../settings/useSettings"
 import NewLoanModal from "./NewLoanModal"
@@ -17,8 +18,8 @@ export default function LoaneeLoans() {
     if(isLoadingLoans) return <Loader/>
     if(loaneeError) return <div className="my-3 px-4 text-sm text-red-600 font-medium">{loaneeError.message}</div>
     if(!loans || !allLoans || !data) return <div>Something went wrong</div>
-    const totalAmount = loans.reduce((acc:number,loan:LoaneTypes)=>acc+loan.loanAmount,0)
-    const totalLoansAmount = allLoans.reduce((acc:number,loan:LoaneTypes)=>acc+loan.loanAmount,0)
+    const totalAmount = loans.reduce((acc:number,loan:LoaneTypes)=>acc+loan.totalLoanAmount!,0)
+    const totalLoansAmount = allLoans.reduce((acc:number,loan:LoaneTypes)=>acc+loan.loanAmount!,0)
     if(!loanee) return <div>Something went wrong</div>
     //console.log(loans)
     const uniqueAgent = [...new Set(loans.map((loan:LoaneTypes)=>loan.servedBy.name!))]
@@ -39,8 +40,8 @@ export default function LoaneeLoans() {
     <div className="shadow p-4 rounded-sm">
     <ColumnText title="Total Loans" text={loans.length.toString()}/>
     <div className="flex justify-between">
-    <ColumnText title="Total Amount" text={totalAmount.toString()}/>
-    <ColumnText title="Available Limit" text={(loanee.limit - totalAmount).toString()}/>
+    <ColumnText title="Total Amount" text={formatCurrency(totalAmount).toString()}/>
+    <ColumnText title="Available Limit" text={formatCurrency(loanee.limit - totalAmount).toString()}/>
     </div>
     </div>
     <div className="overflow-x-auto">
