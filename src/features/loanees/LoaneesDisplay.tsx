@@ -34,13 +34,14 @@ export default function LoaneesDisplay() {
   //console.log(data);
   return (
     <div className="overflow-x-auto">
-      <table className="table">
+      <table className="table table-xs">
         {/* head */}
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Phone</th>
+            <th>Id No.</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -48,10 +49,11 @@ export default function LoaneesDisplay() {
           {/* row 1 */}
           {
             data?.map((loanee, index) => (
-              <tr className="bg-base-200" key={index} >
+              <tr className="" key={index} >
             <th>{index + 1}</th>
             <td>{loanee.firstName}</td>
             <td>{loanee.phoneNumber}</td>
+            <td>{loanee.idNumber}</td>
             <td>
               <div className="flex space-x-1">
                 <Link to={`/loanees/${loanee._id}`} className="btn btn-sm btn-square btn-success">
