@@ -9,15 +9,23 @@ export function useUpdateSettings(){
         onSuccess:()=>{
             queryClient.invalidateQueries();
             Swal.fire({
-                title:"Settings updated",
-                icon:"success"
-
+                icon:"success",
+                title:"Settings Updated successfully",
+                toast:true,
+                position:"top-right",
+                showConfirmButton:false,
+                timer:3000
             })
         },
-        onError:()=>{
+        onError:(error:any)=>{
+            console.log(error);
             Swal.fire({
-                title:"An Error occured",
-                icon:"error"
+                icon:"error",
+                title:error.message,
+                toast:true,
+                position:"top-right",
+                showConfirmButton:false,
+                timer:3000
             })
         }
     })
