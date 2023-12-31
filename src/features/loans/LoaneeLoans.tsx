@@ -75,16 +75,7 @@ export default function LoaneeLoans() {
         </tbody>
       </table>
     </div>
-    {/* <h1 className="my-2 px-3 text-lg font-medium uppercase text-orange-500">Loans Distribution</h1>
-    {
-        loans.map((loan:LoanType,index)=>(
-            <Link to={`/loans/${loan._id}`} key={index} className="grid grid-cols-1 mt-3 shadow px-4">
-            <ColumnText title="Loan Amount" text={loan.loanAmount.toString()}/>
-            <ColumnText title="Loan Reason" text={loan.loanReason}/>
-            
-            </Link>
-        ))
-    } */}
+   
     </>
   )
 }
