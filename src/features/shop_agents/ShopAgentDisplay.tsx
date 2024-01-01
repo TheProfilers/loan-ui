@@ -36,7 +36,7 @@ export default function ShopAgentDisplay() {
     
   return (
     <div className="overflow-x-auto">
-      <table className="table">
+      <table className="table table-xs">
         {/* head */}
         <thead>
           <tr>
@@ -47,19 +47,19 @@ export default function ShopAgentDisplay() {
           </tr>
         </thead>
         <tbody>
-          {/* row 1 */}
+        
          {
             data?.map((agent,index) => (
-                <tr className="bg-base-200" key={index} >
+                <tr className="" key={index} >
                 <th>{index + 1}</th>
                 <td>{agent.name}</td>
                 <td>{agent.phone}</td>
                 <td>
                   <div className="flex space-x-1">
-                    <Link to={`/agents/${agent._id}`} className="btn btn-sm btn-square btn-success">
+                    <Link to={`/agents/${agent._id}`} className="btn btn-sm btn-square bg-green-500 hover:bg-green-400 text-white">
                       <BsFillEyeFill />
                     </Link>
-                    <button disabled={isPending} onClick={()=>handleDelete(agent._id!)} className="btn btn-sm btn-square btn-warning">
+                    <button disabled={isPending} onClick={()=>handleDelete(agent._id!)} className="btn btn-sm btn-square btn-warning text-white">
                       <BsTrash3 />
                     </button>
                   </div>
