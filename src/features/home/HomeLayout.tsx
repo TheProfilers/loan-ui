@@ -1,5 +1,6 @@
 import { BsFillPeopleFill, BsFillPersonCheckFill } from "react-icons/bs";
 
+import { LoaneTypes } from "../../types/LoanTypes";
 import Loader from "../../ui/Loader";
 import { formatCurrency } from "../../utils/helpers";
 import { useAllLoanees } from "../loanees/useAllLoanees";
@@ -16,21 +17,8 @@ export default function HomeLayout() {
   if(isLoading || isLoadingLoanees || isLoadingAgents) return <Loader/>
   if(error || loaneeError || aErro ) return <div>{error?.message}</div>
   if(!loans || !loanees || !agents) return <div>Something went wrong</div>
-  const totalLoanAmount = loans.reduce((acc:number,loan:any)=>acc+loan.loanAmount,0)
-  // const options = [
-  //   {
-  //     label: "Last 7 days",
-  //     value: "7",
-  //   },
-  //   {
-  //     label: "Last 30 days",
-  //     value: "30",
-  //   },
-  //   {
-  //     label: "Last 90 days",
-  //     value: "90",
-  //   },
-  // ];
+  const totalLoanAmount = loans.reduce((acc:number,loan:LoaneTypes)=>acc+loan.totalLoanAmount!,0)
+  
   return (
     <>
     <div className="flex justify-between items-start mt-4">

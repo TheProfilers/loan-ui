@@ -15,7 +15,7 @@ export default function LoaneeDetailsDisplay() {
   return (
     <>
       <div className="flex justify-between">
-      <h3 className="font-medium text-lg my-3 text-orange-500">Loanee Information</h3>
+      <h3 className="font-medium text-lg my-3 text-orange-500">Borrower Information</h3>
      {storedUser?.role === 'admin' && <UpdateLoaneeLimit />}
       </div>
       <div className="shadow rounded-sm p-2">
@@ -39,15 +39,7 @@ export default function LoaneeDetailsDisplay() {
           </tbody>
           </table>
         </div>
-        {/* <ColumnText title="Email" text={loanee.email} /> */}
-        {/* <div className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-8">
-         
-          <ColumnText title="First Name" text={loanee.firstName} />
-          <ColumnText title="Last Name" text={loanee.lastName} />
-          <ColumnText title="Phone" text={loanee.phoneNumber} />
-          <ColumnText title="Limit" text={loanee.limit.toString()} />
-          <ColumnText title="ID Number" text={loanee.idNumber} />
-        </div> */}
+       
       </div>
     </>
   );

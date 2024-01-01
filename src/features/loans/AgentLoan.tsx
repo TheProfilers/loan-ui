@@ -22,12 +22,10 @@ export default function AgentLoan() {
     <>
    
     
-    <div className="shadow p-4 rounded-sm">
+   <div className="flex justify-between shadow p-4 rounded-sm">
     <ColumnText title="Total Loans" text={activeLoans.length.toString()}/>
-    <div className="flex justify-between">
     <ColumnText title="Total Amount" text={formatCurrency(totalAmount).toString()}/>
     
-    </div>
     </div>
     <div className="overflow-x-auto">
       <table className="table table-xs">

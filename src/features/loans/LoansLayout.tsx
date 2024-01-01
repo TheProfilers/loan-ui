@@ -63,12 +63,12 @@ export default function LoansLayout() {
         <FilterComponent param="status" options={options} />
       </div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table table-xs">
           {/* head */}
           <thead>
             <tr>
               <th>#</th>
-              <th>Loanee</th>
+              <th>Borrower</th>
               <th>Amount</th>
               <th>Action</th>
             </tr>
@@ -76,15 +76,15 @@ export default function LoansLayout() {
           <tbody>
             {/* row 1 */}
             {currentRecords?.map((loan, index) => (
-              <tr className="bg-base-200" key={index}>
+              <tr className="" key={index}>
                 <th>{index + 1}</th>
-                {loan.loanee ? <td>{loan.loanee.firstName}</td> : <td>Not Available</td>}
+                {loan.loanee ? <td>{loan.loanee.firstName} {loan.loanee.lastName}</td> : <td>Not Available</td>}
                 <td>{loan.loanAmount}</td>
                 <td>
                   <div className="flex space-x-1">
                     <Link
                       to={`/loans/${loan._id}`}
-                      className="btn btn-sm btn-square btn-success"
+                      className="btn btn-sm btn-square bg-green-500 hover:bg-green-400 text-white"
                     >
                       <BsFillEyeFill />
                     </Link>
@@ -92,7 +92,7 @@ export default function LoansLayout() {
                       <button
                         onClick={() => handleDelete(loan._id)}
                         disabled={isPending}
-                        className="btn btn-sm btn-square btn-warning"
+                        className="btn btn-sm btn-square btn-warning text-white"
                       >
                         <BsTrash3 />
                       </button>
