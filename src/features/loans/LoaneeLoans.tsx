@@ -19,7 +19,7 @@ export default function LoaneeLoans() {
     if(loaneeError) return <div className="my-3 px-4 text-sm text-red-600 font-medium">{loaneeError.message}</div>
     if(!loans || !allLoans || !data) return <div>Something went wrong</div>
     const totalAmount = loans.reduce((acc:number,loan:LoaneTypes)=>acc+loan.totalLoanAmount!,0)
-    const totalLoansAmount = allLoans.reduce((acc:number,loan:LoaneTypes)=>acc+loan.loanAmount!,0)
+    const totalLoansAmount = allLoans.reduce((acc:number,loan:LoaneTypes)=>acc+loan.totalLoanAmount!,0)
     if(!loanee) return <div>Something went wrong</div>
     //console.log(loans)
 
