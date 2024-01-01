@@ -1,5 +1,4 @@
 import BackButton from '../../ui/BackButton'
-import ColumnText from '../../ui/ColumnText'
 import Loader from '../../ui/Loader'
 import { formatDate } from '../../utils/helpers'
 import AgentLoan from '../loans/AgentLoan'
@@ -21,15 +20,27 @@ export default function ShopAgentDetailsLayout() {
     </div>
     
         <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Information</h3>
-        <div className='shadow rounded-sm p-2'>
-        <ColumnText title='Email' text={data.email} />
-    <div className='mt-2 grid grid-cols-2 md:grid-cols-4 gap-8'>
-        
-        <ColumnText title='Phone' text={data.phone!} />
-        <ColumnText title='Full Name' text={data.name} />
-        {data.lastLogin ?<ColumnText title='Last Login' text={formatDate(data.lastLogin)} /> : <ColumnText title='Last Login' text='Never' />}
-    </div>
+        <div className='overflow-x-auto'>
+          <table className='table table-xs'>
+            <thead>
+            <tr>
+            <th>Phone</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Last Login</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{data.name}</td>
+              <td>{data.phone}</td>
+              <td>{data.email}</td>
+              {data.lastLogin ? <td>{formatDate(data.lastLogin)}</td> : <td>Never</td>}
+            </tr>
+            </tbody>
+          </table>
         </div>
+        
 
         <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Loans</h3>
         <AgentLoan/>
