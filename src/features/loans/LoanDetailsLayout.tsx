@@ -129,9 +129,9 @@ export default function LoanDetailsLayout() {
               </thead>
               <tbody>
                 <tr>
-                  <td>{loan.servedBy.name}</td>
-                  <td>{loan.servedBy.phone}</td>
-                  <td>{loan.servedBy.email}</td>
+                  <td>{loan.receivedBy.name}</td>
+                  <td>{loan.receivedBy.phone}</td>
+                  <td>{loan.receivedBy.email}</td>
                 </tr>
               </tbody>
             </table>
