@@ -1,8 +1,9 @@
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useAuth } from '../../context/AuthContext';
 import { RepayLoanType } from '../../services/loanapi';
-import ReusableModal from '../../ui/ReusableModal';
+import NewLoanReusableModal, { NewLoanModalPropsRef } from '../../ui/ReusableModal';
 import { useLoanDetails } from './useLoanDetails';
 import { useRepayLoan } from './useRepayLoan';
 
@@ -16,6 +17,7 @@ export default function RepayLoanModal() {
     reset
   } = useForm();
   const {mutate,isPending} = useRepayLoan();
+  const repayLoanModal = useRef<NewLoanModalPropsRef>(null);
   const handleRepayLoan = (data: any) => {
     if(!loan) return;
     if(data.loanAmount > loan.loanAmount - loan.amountPaid){
@@ -36,6 +38,7 @@ export default function RepayLoanModal() {
     }
     mutate(loanData)
     console.log(loanData);
+    repayLoanModal.current?.closeModal();
     reset();
   };
   const onErrors = (error: any) => {
@@ -43,7 +46,7 @@ export default function RepayLoanModal() {
     console.log(errors);
   };
   return (
-    <ReusableModal title='Repay Loan'>
+    <NewLoanReusableModal title='Repay Loan'ref={repayLoanModal} >
         <form
         className="card-body"
         onSubmit={handleSubmit(handleRepayLoan, onErrors)}
@@ -71,6 +74,6 @@ export default function RepayLoanModal() {
           </button>
         </div>
       </form>
-    </ReusableModal>
+    </NewLoanReusableModal>
   )
 }

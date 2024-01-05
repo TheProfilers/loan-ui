@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useNewLoanee } from "./useNewLoanee";
 
-export default function NewLoanModal() {
+export default function NewLoaneeModal() {
   const {register, handleSubmit, formState: {errors},reset} = useForm();
   const newLoanModal = useRef<HTMLDialogElement>(null);
   const {mutate,isPending} = useNewLoanee();

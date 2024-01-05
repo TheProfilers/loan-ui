@@ -1,5 +1,6 @@
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import ReusableModal from "../../ui/ReusableModal";
+import NewLoanReusableModal, { NewLoanModalPropsRef } from "../../ui/ReusableModal";
 import { useUpdateLimit } from "./useUpdateLimit";
 
 export default function UpdateLoaneeLimit() {
@@ -9,18 +10,20 @@ export default function UpdateLoaneeLimit() {
     formState: { errors },
     reset,
   } = useForm();
+  const updateloaneeModal = useRef<NewLoanModalPropsRef>(null);
   const {mutate,isPending} = useUpdateLimit();
   const handleUpdateLimit = (data: any) => {
     console.log(data);
     mutate(data.limit);
     reset();
+    updateloaneeModal.current?.closeModal();
   };
   const onErrors = (error: any) => {
     console.log(error);
     console.log(errors);
   };
   return (
-    <ReusableModal title="Update Limit">
+    <NewLoanReusableModal title="Update Limit" ref={updateloaneeModal} >
       <form
         className="card-body"
         onSubmit={handleSubmit(handleUpdateLimit, onErrors)}
@@ -51,6 +54,6 @@ export default function UpdateLoaneeLimit() {
           </button>
         </div>
       </form>
-    </ReusableModal>
+    </NewLoanReusableModal>
   );
 }

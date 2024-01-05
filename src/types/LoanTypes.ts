@@ -1,4 +1,5 @@
 import { LoaneesType } from "./LoaneeType";
+import { ReceiverType } from "./ReceiverType";
 import { UserTypes } from "./UserTypes";
 
 export interface LoaneTypes{
@@ -11,6 +12,6 @@ export interface LoaneTypes{
     loanee?:LoaneesType
     createdAt?:string
     updatedAt?:string
-    receivedBy?:UserTypes
+    receivedBy?:ReceiverType[]
 
 }
