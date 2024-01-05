@@ -1,8 +1,9 @@
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { LoanType } from "../../types/LoanType";
-import ReusableModal from "../../ui/ReusableModal";
+import NewLoanReusableModal, { NewLoanModalPropsRef } from "../../ui/ReusableModal";
 import { useNewLoan } from "./useNewLoan";
 
 export default function NewLoanModal() {
@@ -15,6 +16,7 @@ export default function NewLoanModal() {
     reset
   } = useForm();
   const {mutate,isPending} = useNewLoan();
+  const newLoanModal = useRef<NewLoanModalPropsRef>(null);
   const handleNewLoan = (data: any) => {
     const loanData:LoanType = {
       loanAmount: data.loanAmount,
@@ -25,6 +27,7 @@ export default function NewLoanModal() {
 
     }
     mutate(loanData);
+    newLoanModal.current?.closeModal();
     reset();
     
   };
@@ -33,7 +36,7 @@ export default function NewLoanModal() {
     console.log(errors);
   };
   return (
-    <ReusableModal title="Give Out Loan">
+    <NewLoanReusableModal title="Give Out Loan" ref={newLoanModal} >
       <form
         className="card-body"
         onSubmit={handleSubmit(handleNewLoan, onErrors)}
@@ -72,6 +75,6 @@ export default function NewLoanModal() {
           </button>
         </div>
       </form>
-    </ReusableModal>
+    </NewLoanReusableModal>
   );
 }
