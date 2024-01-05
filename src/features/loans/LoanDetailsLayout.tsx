@@ -125,14 +125,23 @@ export default function LoanDetailsLayout() {
                   <th>Name</th>
                   <th>Phone</th>
                   <th>Email</th>
+                  <th>Amount</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {loan.receivedBy.map((rec) => (
+                  <tr>
+                  <td>{rec.userId.name}</td>
+                  <td>{rec.userId.phone}</td>
+                  <td>{rec.userId.email}</td>
+                  <td>{formatCurrency(rec.amountReceived).toString()}</td>
+                </tr>
+                ))}
+                {/* <tr>
                   <td>{loan.receivedBy.name}</td>
                   <td>{loan.receivedBy.phone}</td>
                   <td>{loan.receivedBy.email}</td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
