@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { LoaneTypes } from "../../types/LoanTypes"
 import ColumnText from "../../ui/ColumnText"
@@ -10,7 +11,7 @@ import { useAllLoans } from "./useAllLoans"
 import { useLoaneeLoans } from "./useLoaneeLoans"
 
 export default function LoaneeLoans() {
-  
+  const [currentPage, setCurrentPage] = useState(1);
     const {loans,loaneeError,isLoadingLoans} = useLoaneeLoans()
     const { data:allLoans} = useAllLoans();
     const {data} = useSettings()
@@ -24,13 +25,17 @@ export default function LoaneeLoans() {
     //console.log(loans)
 
     const activeLoans = loans.filter((loan:LoaneTypes)=>loan.totalLoanAmount !== 0)
-    const uniqueAgent = [...new Set(loans.map((loan:LoaneTypes)=>loan.servedBy.name!))]
+    console.log(activeLoans)
+    const recordsPerPage = 10;
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = activeLoans.slice(
+      indexOfFirstRecord,
+      indexOfLastRecord
+    );
+    const totalPages = Math.ceil(activeLoans.length / recordsPerPage);
+    const numbers = [...Array(totalPages + 1).keys()].slice(1);
     
-    const formattedLoans = uniqueAgent.map((agentId:string)=>({
-      agentId,
-      loans:loans.filter((loan:LoaneTypes)=>loan.servedBy.name === agentId)
-    }))
-    console.log(formattedLoans)
   return (
     <>
    {data.loansLimit > totalLoansAmount && <div className="flex justify-end mt-3">
@@ -59,9 +64,9 @@ export default function LoaneeLoans() {
         </thead>
         <tbody>
           {
-            activeLoans.map((loan:LoaneTypes,index)=>(
+            currentRecords.map((loan:LoaneTypes,index)=>(
               <tr key={index}>
-                <td>{loan.servedBy.name}</td>
+                { loan.servedBy ? <td>{loan.servedBy.name!}</td> : <td>Not Available</td>}
                 <td>{new Date(loan.createdAt!).toLocaleString()}</td>
                 <td>{loan.loanReason}</td>
                 <td>{loan.loanAmount}</td>
@@ -74,6 +79,16 @@ export default function LoaneeLoans() {
         
         </tbody>
       </table>
+      <div className="flex justify-end">
+        <div className="join mt-1">
+         {
+            numbers.map((number,index)=>(
+              <button key={index} onClick={()=>setCurrentPage(number)} className={`join-item btn ${currentPage === number ? "btn-active" : ""}`}>{number}</button>
+            ))
+         }
+         
+        </div>
+        </div>
     </div>
    
     </>
