@@ -86,7 +86,7 @@ export default function DownloadLoan() {
       </h1>
 
       {loan.servedBy ? <div className="shadow grid grid-cols-2 md:grid-cols-4 gap-8 p-4 mt-2">
-        {loan.servedBy? <ColumnText title="Full Name" text={loan.servedBy.name!} /> : <ColumnText title="Full Name" text="Not Available" />}
+        {loan.servedBy? <ColumnText title="Full Name" text={loan.servedBy.name!} /> : <ColumnText title="Full Name" text="Agent Not Available" />}
         <ColumnText title="Phone Number" text={loan.servedBy.phone!} />
         <ColumnText title="Email" text={loan.servedBy.email} />
       </div> : <div>Not Available</div>}
