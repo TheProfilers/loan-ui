@@ -27,6 +27,7 @@ export default function NewLoanModal() {
 
     }
     mutate(loanData);
+    //console.log(loanData);
     newLoanModal.current?.closeModal();
     reset();
     
