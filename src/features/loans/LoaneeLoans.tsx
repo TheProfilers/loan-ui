@@ -24,13 +24,14 @@ export default function LoaneeLoans() {
     //console.log(loans)
 
     const activeLoans = loans.filter((loan:LoaneTypes)=>loan.totalLoanAmount !== 0)
-    const uniqueAgent = [...new Set(loans.map((loan:LoaneTypes)=>loan.servedBy.name!))]
+    console.log(activeLoans)
+   // const uniqueAgent = [...new Set(loans.map((loan:LoaneTypes)=>loan.servedBy.name!))]
     
-    const formattedLoans = uniqueAgent.map((agentId:string)=>({
-      agentId,
-      loans:loans.filter((loan:LoaneTypes)=>loan.servedBy.name === agentId)
-    }))
-    console.log(formattedLoans)
+    // const formattedLoans = uniqueAgent.map((agentId:string)=>({
+    //   agentId,
+    //   loans:loans.filter((loan:LoaneTypes)=>loan.servedBy.name === agentId)
+    // }))
+    // console.log(formattedLoans)
   return (
     <>
    {data.loansLimit > totalLoansAmount && <div className="flex justify-end mt-3">
@@ -61,7 +62,7 @@ export default function LoaneeLoans() {
           {
             activeLoans.map((loan:LoaneTypes,index)=>(
               <tr key={index}>
-                <td>{loan.servedBy.name}</td>
+                { loan.servedBy ? <td>{loan.servedBy.name!}</td> : <td>Not Available</td>}
                 <td>{new Date(loan.createdAt!).toLocaleString()}</td>
                 <td>{loan.loanReason}</td>
                 <td>{loan.loanAmount}</td>
