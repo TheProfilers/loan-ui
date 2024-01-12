@@ -26,7 +26,7 @@ const NewLoanReusableModal = forwardRef<NewLoanModalPropsRef,NewLoanModalProps>(
   }));
   return (
     <>
-    <button type='button' className="btn bg-green-600 hover:bg-green-500 text-white font-bold" onClick={openModal}>{title}</button>
+    <button type='button' className="btn bg-green-600 hover:bg-green-500 text-white font-bold btn-sm" onClick={openModal}>{title}</button>
 <dialog ref={newLoanModal} className="modal">
   <div className="modal-box">
     <div className="flex justify-end">
