@@ -1,4 +1,5 @@
 import Loader from "../../ui/Loader";
+import { formatCurrency, formatDate } from "../../utils/helpers";
 import { useTodayAgentStock } from "./useTodayAgentStock";
 
 export default function AgentStock() {
@@ -22,7 +23,33 @@ export default function AgentStock() {
     {stock.length < 1 && <div>No Stock</div>}
 
     <div className="overflow-x-auto" >
-
+      <table className="table table-xs">
+    <thead>
+      <tr>
+        <th>Time Assigned</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        stock.map((s,index)=>(
+          <tr key={index}>
+        <td>{formatDate(s.createdAt)}</td>
+        <td>{formatCurrency(s.amount)}</td>
+        <td>{s.status}</td>
+        <td>
+          <div className="flex space-x-2">
+          <button className="btn btn-outline btn-accent btn-xs">Request</button>
+          <button className="btn btn-outline btn-accent btn-xs">Update</button>
+          </div>
+        </td>
+      </tr>
+        ))
+      }
+    </tbody>
+      </table>
     </div>
     </>
   )
