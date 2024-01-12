@@ -22,7 +22,7 @@ export default function SideNav() {
           label: "Agents",
           path: "/agents",
           icon: <BsFillPeopleFill />,
-          roles: ["admin"],
+          //roles: ["admin"],
       },
       {
         label: "Loans",
