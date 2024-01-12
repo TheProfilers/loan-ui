@@ -1,11 +1,14 @@
+import { useAuth } from '../../context/AuthContext'
 import BackButton from '../../ui/BackButton'
 import Loader from '../../ui/Loader'
 import { formatDate } from '../../utils/helpers'
 import AgentLoan from '../loans/AgentLoan'
+import AgentStock from '../stock/AgentStock'
 import { useShopAgentDetails } from './useShopAgentDetails'
 
 export default function ShopAgentDetailsLayout() {
     const {data, isLoading, error} = useShopAgentDetails()
+    const {storedUser} = useAuth();
 
     if(isLoading) return <Loader/>
     if(error) return <div>{error.message}</div>
@@ -42,8 +45,10 @@ export default function ShopAgentDetailsLayout() {
         </div>
         
 
-        <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Loans</h3>
-        <AgentLoan/>
+        {storedUser?.role ==='admin' && <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Loans</h3>}
+       {storedUser?.role ==='admin' && <AgentLoan/>}
+
+       <AgentStock/>
     </>
   )
 }
