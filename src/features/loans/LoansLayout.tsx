@@ -103,8 +103,8 @@ export default function LoansLayout() {
             ))}
           </tbody>
         </table>
-        <div className="flex justify-end">
-        <div className="join mt-1">
+        <div className="flex justify-end ">
+        <div className="join mt-1 overflow-x-auto">
          {
             numbers.map((number,index)=>(
               <button key={index} onClick={()=>setCurrentPage(number)} className={`join-item btn ${currentPage === number ? "btn-active" : ""}`}>{number}</button>
