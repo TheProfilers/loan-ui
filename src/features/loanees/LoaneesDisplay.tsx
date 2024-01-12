@@ -24,7 +24,7 @@ export default function LoaneesDisplay() {
   if (data?.length === 0) {
     return (
       <div className="h-screen flex flex-col justify-center items-center">
-        <h1 className="text-2xl">No Agents Found</h1>
+        <h1 className="text-2xl">No Borrowers Found</h1>
       </div>
     );
   }
