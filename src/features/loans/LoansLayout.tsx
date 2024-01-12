@@ -5,6 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { LoaneTypes } from "../../types/LoanTypes";
 import FilterComponent from "../../ui/FilterComponent";
 import Loader from "../../ui/Loader";
+import { formatCurrency } from "../../utils/helpers";
 import { useAllLoans } from "./useAllLoans";
 import { useDeleteLoan } from "./useDeleteLoan";
 
@@ -79,7 +80,7 @@ export default function LoansLayout() {
               <tr className="" key={index}>
                 <th>{index + 1}</th>
                 {loan.loanee ? <td>{loan.loanee.firstName} {loan.loanee.lastName}</td> : <td>Not Available</td>}
-                <td>{loan.loanAmount}</td>
+                <td>{formatCurrency(loan.loanAmount)}</td>
                 <td>
                   <div className="flex space-x-1">
                     <Link
