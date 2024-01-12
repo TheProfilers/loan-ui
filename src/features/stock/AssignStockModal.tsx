@@ -1,9 +1,14 @@
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { IStock } from "../../services/apiStock";
 import NewLoanReusableModal, { NewLoanModalPropsRef } from "../../ui/ReusableModal";
+import { useAssignStock } from "./useAssignStock";
 
 export default function AssignStockModal() {
     const assignLoanModal = useRef<NewLoanModalPropsRef>(null);
+    const {id} = useParams<{id:string}>()
+    const {mutate,isPending} = useAssignStock()
     const {
       register,
       handleSubmit,
@@ -11,7 +16,13 @@ export default function AssignStockModal() {
       reset,
     } = useForm();
     const handleUpdateLimit = (data: any) => {
-      console.log(data);
+      const newStock:IStock = {
+        amount: data.stock,
+        belongsTo: id!,
+        status: "default",
+      };
+      mutate(newStock);
+      console.log(newStock);
       reset();
       assignLoanModal.current?.closeModal();
     };
@@ -46,7 +57,7 @@ export default function AssignStockModal() {
         </div>
 
         <div className="form-control mt-6">
-          <button type="submit" className="btn btn-primary">
+          <button disabled={isPending} type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>
