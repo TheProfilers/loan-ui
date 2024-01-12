@@ -1,5 +1,6 @@
 import Loader from "../../ui/Loader";
 import { formatCurrency, formatDate } from "../../utils/helpers";
+import RequestLoanModal from "./RequestLoanModal";
 import { useTodayAgentStock } from "./useTodayAgentStock";
 
 export default function AgentStock() {
@@ -41,7 +42,8 @@ export default function AgentStock() {
         <td>{s.status}</td>
         <td>
           <div className="flex space-x-2">
-          <button className="btn btn-outline btn-accent btn-xs">Request</button>
+          {/* <button className="btn btn-outline btn-accent btn-xs">Request</button> */}
+          <RequestLoanModal stockId={s._id} />
           <button className="btn btn-outline btn-accent btn-xs">Update</button>
           </div>
         </td>
