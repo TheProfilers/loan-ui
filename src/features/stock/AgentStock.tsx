@@ -10,12 +10,20 @@ export default function AgentStock() {
     if(error){
         return <div>{error.message}</div>
     }
+    if(!stock){
+        return <div>No Stock</div>
+    }
     console.log(stock)
     const today = new Date().toDateString();
     console.log(today)
   return (
     <>
     <h2 className='font-normal text-orange-500 text-lg my-2'>Agent Stock</h2>
+    {stock.length < 1 && <div>No Stock</div>}
+
+    <div className="overflow-x-auto" >
+
+    </div>
     </>
   )
 }
