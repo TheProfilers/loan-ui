@@ -4,6 +4,7 @@ import Loader from '../../ui/Loader'
 import { formatDate } from '../../utils/helpers'
 import AgentLoan from '../loans/AgentLoan'
 import AgentStock from '../stock/AgentStock'
+import AssignStockModal from '../stock/AssignStockModal'
 import { useShopAgentDetails } from './useShopAgentDetails'
 
 export default function ShopAgentDetailsLayout() {
@@ -19,7 +20,8 @@ export default function ShopAgentDetailsLayout() {
     <div className='flex justify-between'>
     <BackButton/>
 
-    <h3 className='font-medium text-xl uppercase'>Agent Details</h3>
+    {/* <h3 className='font-medium text-xl uppercase'>Agent Details</h3> */}
+    { storedUser?.role ==='admin' && <AssignStockModal/>}
     </div>
     
         <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Information</h3>
