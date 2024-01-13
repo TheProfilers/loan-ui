@@ -89,3 +89,35 @@ export async function requestMoreStock(stockRequest:IStockRequest){
       }
 
 }
+export interface StockApproval{
+  id:string,
+  status:string,
+
+}
+
+export async function approveStockRequest({id,status}:StockApproval){
+    try {
+        const response = await fetch(`${BASE_URL}stock/request/accept/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token")!)}`,
+          },
+          body: JSON.stringify({status}),
+        });
+        const data = await response.json();
+        if (data.statusCode === 500) {
+          throw new Error(data.message);
+        }
+        if (response.status === 401) {
+          throw new Error("You are not authorized to perform this action");
+        }
+        if (data.statusCode) {
+          throw new Error(data.message);
+        }
+        return data;
+      }catch (error: any) {
+        throw new Error(error.message);
+      }
+
+}
