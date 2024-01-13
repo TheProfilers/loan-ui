@@ -5,19 +5,15 @@ import { formatCurrency, formatDate } from "../../utils/helpers";
 import ApproveStockRequest from "./ApproveStockRequest";
 import RequestLoanModal from "./RequestLoanModal";
 import { useApproveStockRequest } from "./useApproveStockRequest";
+import { useDeclineStockRequest } from "./useDeclineStockRequest";
 import { useTodayAgentStock } from "./useTodayAgentStock";
 
 export default function AgentStock() {
     const {stock, error, isLoading} = useTodayAgentStock();
     const {storedUser} = useAuth();
     const {mutate,isPending} = useApproveStockRequest()
-    const handleApprove = (stockId:string)=>{
-      const payload:StockApproval = {
-        id: stockId,
-        status: 'approved'
-      }
-      mutate(payload)
-    }
+    const {decline,isDeclining} = useDeclineStockRequest()
+  
 
     if(isLoading){
         return <Loader/>
@@ -28,6 +24,29 @@ export default function AgentStock() {
     if(!stock){
         return <div>No Stock</div>
     }
+
+    const handleApprove = (stockId:string)=>{
+     
+
+      const payload:StockApproval = {
+        id: stockId,
+        status: 'approved'
+      }
+
+      mutate(payload)
+    }
+
+    const handleDecline = (stockId:string)=>{
+     
+
+      const payload:StockApproval = {
+        id: stockId,
+        status: 'rejected'
+      }
+
+      decline(payload)
+    }
+
     console.log(stock)
     const stockRequestList = stock.map(s=>{
       return {
@@ -97,7 +116,7 @@ export default function AgentStock() {
                   <td>
                     {storedUser?.id === s.belongsTo._id ? <div className="flex space-x-2">
                       <button disabled={s.status === 'approved' || s.status ==='rejected'} onClick={()=>handleApprove(s._id)} className="btn btn-outline btn-accent btn-xs">Approve</button>
-                      <button disabled={s.status === 'approved' || s.status ==='rejected'} className="btn btn-outline btn-warning btn-xs">Reject</button>
+                      <button disabled={s.status === 'approved' || s.status ==='rejected'} onClick={()=>handleDecline(s._id)} className="btn btn-outline btn-warning btn-xs">Reject</button>
                     </div> : <div>
                       No Actions
                       </div>}
