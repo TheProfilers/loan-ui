@@ -6,5 +6,11 @@ export interface StockType{
     status:string,
     belongsTo:UserTypes
     amountRequested:number,
+    requestedBy:ReceiveedBy[],
     createdAt:string,
+}
+interface ReceiveedBy{
+    userId:UserTypes,
+    amountRequested:number,
+    time:string,
 }
