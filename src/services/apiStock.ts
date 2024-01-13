@@ -56,6 +56,38 @@ export async function assignStockToAgent(stock:IStock){
       }
 }
 
+export interface IStockReAssign{
+  id:string,
+  amount:number,
+  
+}
+
+export async function reAssignStockToAgent({id,amount}:IStockReAssign){
+  try {
+      const response = await fetch(`${BASE_URL}stock/reassign/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token")!)}`,
+        },
+        body: JSON.stringify({amount}),
+      });
+      const data = await response.json();
+      if (data.statusCode === 500) {
+        throw new Error(data.message);
+      }
+      if (response.status === 401) {
+        throw new Error("You are not authorized to perform this action");
+      }
+      if (data.statusCode) {
+        throw new Error(data.message);
+      }
+      return data;
+    }catch (error: any) {
+      throw new Error(error.message);
+    }
+}
+
 export interface IStockRequest{
   id:string,
   amountRequested:number,
@@ -124,7 +156,7 @@ export async function approveStockRequest({id,status}:StockApproval){
 
 export async function rejectStockRequest({id,status}:StockApproval){
   try {
-      const response = await fetch(`${BASE_URL}stock/request/accept/${id}`, {
+      const response = await fetch(`${BASE_URL}stock/request/decline/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -148,3 +180,4 @@ export async function rejectStockRequest({id,status}:StockApproval){
     }
 
 }
+
