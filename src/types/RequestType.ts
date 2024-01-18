@@ -7,4 +7,5 @@ export interface RequestType{
     stockId:string,
     createdAt:string,
     requester:UserTypes,
+    reciever:UserTypes,
 }
