@@ -118,7 +118,8 @@ export default function AgentStock() {
           <table className="table table-xs">
             <thead>
               <tr>
-                <th>Name</th>
+                <th>From</th>
+                <th>To</th>
                 <th>Phone</th>
                 <th>Amount Requested</th>
                 <th>Status</th>
@@ -130,6 +131,7 @@ export default function AgentStock() {
               {storeRequests.map((r, index) => (
                 <tr key={index}>
                   <td>{r.requester.name}</td>
+                  <td>{r.reciever.name}</td>
                   <td>{r.requester.phone}</td>
                   <td>{formatCurrency(r.amountRequested)}</td>
                   <td>{r.status}</td>
