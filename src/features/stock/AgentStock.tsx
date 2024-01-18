@@ -1,5 +1,4 @@
 import { useAuth } from "../../context/AuthContext";
-import { StockApproval } from "../../services/apiStock";
 import Loader from "../../ui/Loader";
 import { formatCurrency, formatDate } from "../../utils/helpers";
 import RequestLoanModal from "./RequestLoanModal";
@@ -37,12 +36,12 @@ export default function AgentStock() {
   };
 
   const handleDecline = (stockId: string) => {
-    const payload: StockApproval = {
-      id: stockId,
-      status: "rejected",
-    };
+    // const payload: StockApproval = {
+    //   id: stockId,
+    //   status: "rejected",
+    // };
 
-    decline(payload);
+    decline(stockId);
   };
 
   console.log(stock);
@@ -142,7 +141,7 @@ export default function AgentStock() {
                         <button
                           disabled={
                             r.status === "Approved" ||
-                            r.status === "rejected" ||
+                            r.status === "Declined" ||
                             isPending
                           }
                           onClick={() => handleApprove(r._id)}
@@ -153,7 +152,7 @@ export default function AgentStock() {
                         <button
                           disabled={
                             r.status === "Approved" ||
-                            r.status === "rejected" ||
+                            r.status === "Declined" ||
                             isDeclining
                           }
                           onClick={() => handleDecline(r._id)}
