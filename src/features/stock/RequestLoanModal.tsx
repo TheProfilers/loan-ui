@@ -15,10 +15,11 @@ export default function RequestLoanModal({stockId}: {stockId:string}) {
     const handleUpdateLimit = (stockId:string) => {
       
       const requestInfo: IStockRequest={
-        id: stockId,
+        stockId: stockId,
         amountRequested: requestAmount!,
         requester: storedUser!.id!,
         reciever: id!,
+        status: 'pending'
       }
       mutate(requestInfo);
       console.log(requestInfo);

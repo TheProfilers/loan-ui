@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { approveStockRequest } from "../../services/apiStock";
+import { approveStocRequest } from "../../services/apiRequests";
 
 export function useApproveStockRequest(){
     const queryClient = useQueryClient();
     const{mutate,isPending} = useMutation({
-        mutationFn:approveStockRequest,
+        mutationFn:approveStocRequest,
         onSuccess:()=>{
             queryClient.invalidateQueries();
             Swal.fire({

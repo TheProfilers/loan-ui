@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { requestMoreStock } from "../../services/apiStock";
+import { requestMoreStock } from "../../services/apiRequests";
+//import { requestMoreStock } from "../../services/apiStock";
 
 export function useRequestMoreStock(){
 const queryClient = useQueryClient();
