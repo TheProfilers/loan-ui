@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { rejectStockRequest } from "../../services/apiStock";
+import { declineStocRequest } from "../../services/apiRequests";
 
 export function useDeclineStockRequest(){
     const queryClient = useQueryClient();
 
     const {mutate:decline,isPending:isDeclining} = useMutation({
-        mutationFn:rejectStockRequest,
+        mutationFn:declineStocRequest,
         onSuccess:()=>{
             queryClient.invalidateQueries();
             Swal.fire({
