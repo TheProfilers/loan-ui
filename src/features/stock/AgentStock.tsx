@@ -2,28 +2,37 @@ import { useAuth } from "../../context/AuthContext";
 import { StockApproval } from "../../services/apiStock";
 import Loader from "../../ui/Loader";
 import { formatCurrency, formatDate } from "../../utils/helpers";
-import ApproveStockRequest from "./ApproveStockRequest";
 import RequestLoanModal from "./RequestLoanModal";
 import { useApproveStockRequest } from "./useApproveStockRequest";
 import { useDeclineStockRequest } from "./useDeclineStockRequest";
 import { useTodayAgentStock } from "./useTodayAgentStock";
+import { useTodayStockExchange } from "./useTodayStockRequests";
 
 export default function AgentStock() {
+  //const  {requests, todayError, isGettingToday} = useTodayStockExchange();
     const {stock, error, isLoading} = useTodayAgentStock();
+    const {requests, todayError, isGettingToday} = useTodayStockExchange();
+   
     const {storedUser} = useAuth();
     const {mutate,isPending} = useApproveStockRequest()
     const {decline,isDeclining} = useDeclineStockRequest()
+    
   
 
-    if(isLoading){
+    if(isLoading || isGettingToday){
         return <Loader/>
     }
-    if(error){
-        return <div>{error.message}</div>
+    if(error || todayError){
+        return <div>{error?.message}</div>
     }
-    if(!stock){
+    if(!stock || !requests){
         return <div>No Stock</div>
     }
+
+ console.log(requests)
+    // if(!requests){
+    //   return <div>No Stock Requests</div>
+    // }
 
     const handleApprove = (stockId:string)=>{
      
@@ -48,19 +57,20 @@ export default function AgentStock() {
     }
 
     console.log(stock)
+    //console.log(requests)
     const stockRequestList = stock.map(s=>{
       return {
         stockId: s._id,
         requestedBy: s.requestedBy
       }
     }).flat();
-    console.log(stockRequestList)
+    const storeRequests = requests.filter(r=>r.stockId === stock[0]._id)
+    console.log(storeRequests)
   return (
     <>
     <h2 className='font-normal text-orange-500 text-lg my-2'>Agent Stock</h2>
-    {stock.length < 1 && <div>No Stock</div>}
-
-    <div className="overflow-x-auto" >
+    
+    {stock.length < 1 ? <div>No Stock Assigned today</div> : <div className="overflow-x-auto" >
       <table className="table table-xs">
     <thead>
       <tr>
@@ -79,8 +89,9 @@ export default function AgentStock() {
         <td>{s.status}</td>
         <td>
           <div className="flex space-x-2">
+            {s._id}
           {/* <button className="btn btn-outline btn-accent btn-xs">Request</button> */}
-         {storedUser?.id === s.belongsTo._id ? <ApproveStockRequest/> : <RequestLoanModal stockId={s._id} />}
+         {(storedUser?.id === s.belongsTo._id || storedUser?.role === 'admin')  ? "" : <RequestLoanModal stockId={s._id} />}
           {storedUser?.role === 'admin' && <button className="btn btn-outline btn-accent btn-xs">Update</button>}
           </div>
         </td>
@@ -89,9 +100,12 @@ export default function AgentStock() {
       }
     </tbody>
       </table>
-    </div>
+    </div>}
+
+    
 
     <h2 className='font-normal text-orange-500 text-lg my-2'>Stock Requests</h2>
+   
     {stockRequestList.length < 1 ? <div>No Stock Request</div> : (
       <div className="overflow-x-auto">
       <table className="table table-xs">
@@ -106,24 +120,24 @@ export default function AgentStock() {
         </thead>
         <tbody>
           {
-            stock.map((s)=>(
-              s.requestedBy.map((r,index)=>(
+            
+            storeRequests.map((r,index)=>(
                 <tr key={index}>
-                  <td>{r.userId.name}</td>
-                  <td>{r.userId.phone}</td>
+                  <td>{r.requester.name}</td>
+                  <td>{r.requester.phone}</td>
                   <td>{formatCurrency(r.amountRequested)}</td>
-                  <td>{formatDate(r.time)}</td>
+                  <td>{formatDate(r.createdAt)}</td>
                   <td>
-                    {storedUser?.id === s.belongsTo._id ? <div className="flex space-x-2">
-                      <button disabled={s.status === 'approved' || s.status ==='rejected' || isPending} onClick={()=>handleApprove(s._id)} className="btn btn-outline btn-accent btn-xs">Approve</button>
-                      <button disabled={s.status === 'approved' || s.status ==='rejected' || isDeclining} onClick={()=>handleDecline(s._id)} className="btn btn-outline btn-warning btn-xs">Reject</button>
+                    {storedUser?.id === r.requester._id ? <div className="flex space-x-2">
+                      <button disabled={r.status === 'approved' || r.status ==='rejected' || isPending} onClick={()=>handleApprove(r._id)} className="btn btn-outline btn-accent btn-xs">Approve</button>
+                      <button disabled={r.status === 'approved' || r.status ==='rejected' || isDeclining} onClick={()=>handleDecline(r._id)} className="btn btn-outline btn-warning btn-xs">Reject</button>
                     </div> : <div>
                       No Actions
                       </div>}
                   </td>
                 </tr>
               ))
-            ))
+           
           }
         </tbody>
       </table>
