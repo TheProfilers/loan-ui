@@ -13,7 +13,7 @@ export default function CashInRequests() {
    <>
    <h3 className='font-medium text-lg text-orange-500 py-2'>Cash In</h3>
    {
-    data.length < 1 ? <div>No Cash Out Requests</div> :<div className="overflow-x-auto">
+    data.length < 1 ? <div>No Cash In Requests</div> :<div className="overflow-x-auto">
     <table className="table table-xs">
       <thead>
         <tr>
