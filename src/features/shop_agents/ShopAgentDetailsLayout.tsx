@@ -50,7 +50,7 @@ export default function ShopAgentDetailsLayout() {
         {storedUser?.role ==='admin' && <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Loans</h3>}
        {storedUser?.role ==='admin' && <AgentLoan/>}
 
-       <AgentStock/>
+       {storedUser?.role ==='admin' ? '' : <AgentStock/>}
     </>
   )
 }
