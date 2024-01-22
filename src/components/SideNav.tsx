@@ -1,4 +1,5 @@
 import { BsBriefcase, BsFillBagCheckFill, BsFillPeopleFill, BsGear, BsHouseDoor } from "react-icons/bs";
+import { FiCreditCard } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 export default function SideNav() {
@@ -29,6 +30,12 @@ export default function SideNav() {
         path: "/loans",
         icon: <BsFillBagCheckFill />
     },
+    {
+      label: "Assign Stock",
+      path: "/assign-stock",
+      icon: <FiCreditCard />,
+      roles: ["admin"],
+  },
       {
         label: "Settings",
         path: "/settings",
