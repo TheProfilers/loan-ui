@@ -58,7 +58,7 @@ export default function AgentStock() {
   console.log(storeRequests);
   return (
     <>
-      <h2 className="font-normal text-orange-500 text-lg my-2">Agent Stock</h2>
+      <h2 className="font-normal text-orange-500 text-lg my-2">Assigned Stock</h2>
 
       {stock.length < 1 ? (
         <div>No Stock Assigned today</div>
@@ -104,7 +104,7 @@ export default function AgentStock() {
       )}
 
       <h2 className="font-normal text-orange-500 text-lg my-2">
-        Stock Requests
+        Cash Outs
       </h2>
 
       {stockRequestList.length < 1 ? (

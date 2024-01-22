@@ -19,7 +19,7 @@ export default function ShopAgentDetailsLayout() {
     <div className='flex justify-between'>
     <BackButton/>
 
-    {/* <h3 className='font-medium text-xl uppercase'>Agent Details</h3> */}
+ 
     { storedUser?.role ==='admin' && <AssignStockModal/>}
     </div>
     
@@ -49,7 +49,7 @@ export default function ShopAgentDetailsLayout() {
         {storedUser?.role ==='admin' && <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Loans</h3>}
        {storedUser?.role ==='admin' && <AgentLoan/>}
 
-       {/* {storedUser?.role ==='admin' ? '' : <AgentStock/>} */}
+      
     </>
   )
 }
