@@ -1,55 +1,59 @@
-import { useAuth } from '../../context/AuthContext';
-import BackButton from '../../ui/BackButton';
-import Loader from '../../ui/Loader';
-import { formatDate } from '../../utils/helpers';
-import { useShopAgentDetails } from '../shop_agents/useShopAgentDetails';
-import AgentStock from '../stock/AgentStock';
-import AssignStockModal from '../stock/AssignStockModal';
+import { useAuth } from "../../context/AuthContext";
+import BackButton from "../../ui/BackButton";
+import Loader from "../../ui/Loader";
+import { formatDate } from "../../utils/helpers";
+import { useShopAgentDetails } from "../shop_agents/useShopAgentDetails";
+import AgentStock from "../stock/AgentStock";
+import AssignStockModal from "../stock/AssignStockModal";
+import CashInRequests from "./CashInRequests";
 
 export default function AgentListDetails() {
-    const {data, isLoading, error} = useShopAgentDetails()
-    const {storedUser} = useAuth();
+  const { data, isLoading, error } = useShopAgentDetails();
+  const { storedUser } = useAuth();
 
-    if(isLoading) return <Loader/>
-    if(error) return <div>{error.message}</div>
-    if(!data) return <div>Something went wrong</div>
-    console.log(data)
+  if (isLoading) return <Loader />;
+  if (error) return <div>{error.message}</div>;
+  if (!data) return <div>Something went wrong</div>;
+  console.log(data);
   return (
     <>
-    <div className='flex justify-between'>
-    <BackButton/>
+      <div className="flex justify-between">
+        <BackButton />
 
-    {/* <h3 className='font-medium text-xl uppercase'>Agent Details</h3> */}
-    { storedUser?.role ==='admin' && <AssignStockModal/>}
-    </div>
-    
-        <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Information</h3>
-        <div className='overflow-x-auto'>
-          <table className='table table-xs'>
-            <thead>
+        {/* <h3 className='font-medium text-xl uppercase'>Agent Details</h3> */}
+        {storedUser?.role === "admin" && <AssignStockModal />}
+      </div>
+
+      <h3 className="font-medium text-lg my-3 text-orange-500">
+        Agent Information
+      </h3>
+      <div className="overflow-x-auto">
+        <table className="table table-xs">
+          <thead>
             <tr>
-            <th>Phone</th>
+              <th>Phone</th>
               <th>Full Name</th>
               <th>Email</th>
               <th>Last Login</th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr>
               <td>{data.name}</td>
               <td>{data.phone}</td>
               <td>{data.email}</td>
-              {data.lastLogin ? <td>{formatDate(data.lastLogin)}</td> : <td>Never</td>}
+              {data.lastLogin ? (
+                <td>{formatDate(data.lastLogin)}</td>
+              ) : (
+                <td>Never</td>
+              )}
             </tr>
-            </tbody>
-          </table>
-        </div>
-        
+          </tbody>
+        </table>
+      </div>
 
-        {storedUser?.role ==='admin' && <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Loans</h3>}
-       
-
-       <AgentStock/>
+      <AgentStock />
+      <CashInRequests />
     </>
-  )
+  );
 }
