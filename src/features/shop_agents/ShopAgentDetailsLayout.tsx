@@ -3,7 +3,6 @@ import BackButton from '../../ui/BackButton'
 import Loader from '../../ui/Loader'
 import { formatDate } from '../../utils/helpers'
 import AgentLoan from '../loans/AgentLoan'
-import AgentStock from '../stock/AgentStock'
 import AssignStockModal from '../stock/AssignStockModal'
 import { useShopAgentDetails } from './useShopAgentDetails'
 
@@ -50,7 +49,7 @@ export default function ShopAgentDetailsLayout() {
         {storedUser?.role ==='admin' && <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Loans</h3>}
        {storedUser?.role ==='admin' && <AgentLoan/>}
 
-       {storedUser?.role ==='admin' ? '' : <AgentStock/>}
+       {/* {storedUser?.role ==='admin' ? '' : <AgentStock/>} */}
     </>
   )
 }
