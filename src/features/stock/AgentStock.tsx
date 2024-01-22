@@ -36,10 +36,7 @@ export default function AgentStock() {
   };
 
   const handleDecline = (stockId: string) => {
-    // const payload: StockApproval = {
-    //   id: stockId,
-    //   status: "rejected",
-    // };
+   
 
     decline(stockId);
   };
@@ -84,7 +81,7 @@ export default function AgentStock() {
                   <td>{s.status}</td>
                   <td>
                     <div className="flex space-x-2">
-                      {s._id}
+                      
                       {/* <button className="btn btn-outline btn-accent btn-xs">Request</button> */}
                       {storedUser?.id === s.belongsTo._id ||
                       storedUser?.role === "admin" ? (
@@ -133,7 +130,9 @@ export default function AgentStock() {
                   <td>{r.reciever.name}</td>
                   <td>{r.requester.phone}</td>
                   <td>{formatCurrency(r.amountRequested)}</td>
-                  <td>{r.status}</td>
+                  {r.status ==="pending" && <td><p className="text-orange-400 capitalize">{r.status}</p></td>}
+                  {r.status ==="Approved" && <td><p className="text-green-500">{r.status}</p></td>}
+                  {r.status ==="Declined" && <td><p className="text-red-500">{r.status}</p></td>}
                   <td>{formatDate(r.createdAt)}</td>
                   <td>
                     {storedUser?.id === r.reciever._id ? (
