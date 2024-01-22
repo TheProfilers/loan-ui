@@ -1,12 +1,12 @@
-import { useAuth } from '../../context/AuthContext'
-import BackButton from '../../ui/BackButton'
-import Loader from '../../ui/Loader'
-import { formatDate } from '../../utils/helpers'
-import AgentLoan from '../loans/AgentLoan'
-import AssignStockModal from '../stock/AssignStockModal'
-import { useShopAgentDetails } from './useShopAgentDetails'
+import { useAuth } from '../../context/AuthContext';
+import BackButton from '../../ui/BackButton';
+import Loader from '../../ui/Loader';
+import { formatDate } from '../../utils/helpers';
+import { useShopAgentDetails } from '../shop_agents/useShopAgentDetails';
+import AgentStock from '../stock/AgentStock';
+import AssignStockModal from '../stock/AssignStockModal';
 
-export default function ShopAgentDetailsLayout() {
+export default function AgentListDetails() {
     const {data, isLoading, error} = useShopAgentDetails()
     const {storedUser} = useAuth();
 
@@ -47,9 +47,9 @@ export default function ShopAgentDetailsLayout() {
         
 
         {storedUser?.role ==='admin' && <h3 className='font-medium text-lg my-3 text-orange-500'>Agent Loans</h3>}
-       {storedUser?.role ==='admin' && <AgentLoan/>}
+       
 
-       {/* {storedUser?.role ==='admin' ? '' : <AgentStock/>} */}
+       <AgentStock/>
     </>
   )
 }

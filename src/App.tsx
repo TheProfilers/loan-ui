@@ -1,8 +1,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import AgentListDetails from "./features/assigne_stock/AgentListDetails";
 import DownloadLoan from "./features/loans/DownloadLoan";
 import AccountSettings from "./pages/AccountSettings";
+import AssignStock from "./pages/AssignStock";
 import Home from "./pages/Home";
 import LoanDetails from "./pages/LoanDetails";
 import LoaneeDetails from "./pages/LoaneeDetails";
@@ -41,8 +43,10 @@ export default function App() {
           
           <Route path="/agents" element={<ShopAgents/>} />
           <Route path="agents/:id" element={<ShopAgentDetails/>} />
+          <Route path="stock/:id" element={<AgentListDetails/>} />
           <Route path="loanees/:id" element={<LoaneeDetails/>} />
           <Route path="loans" element={<Loans/>} />
+          <Route path="/assign-stock" element={<AssignStock/>} />
           <Route path="loans/:id" element={<LoanDetails/>} />
           <Route path="download/:id" element={<DownloadLoan/>} />
           <Route path="settings" element={<Settings/>} />
