@@ -31,10 +31,10 @@ export default function SideNav() {
         icon: <BsFillBagCheckFill />
     },
     {
-      label: "Assign Stock",
+      label: "Stock",
       path: "/assign-stock",
       icon: <FiCreditCard />,
-      roles: ["admin"],
+     // roles: ["admin"],
   },
       {
         label: "Settings",
