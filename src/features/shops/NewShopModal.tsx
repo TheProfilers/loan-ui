@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import NewLoanReusableModal, {
     NewLoanModalPropsRef,
 } from "../../ui/ReusableModal";
+import { useNewShop } from "./useNewShop";
 
 export default function NewShopModal() {
   const newShopModal = useRef<NewLoanModalPropsRef>(null);
@@ -12,11 +13,13 @@ export default function NewShopModal() {
     reset,
     formState: { errors },
   } = useForm();
+  const{mutate,isPending}=useNewShop();
   const closeLoanModal = () => {
     newShopModal.current?.closeModal();
   };
   const handleNewShop = (data: any) => {
     console.log(data);
+    mutate(data);
     reset();
     closeLoanModal();
   };
@@ -81,6 +84,7 @@ export default function NewShopModal() {
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
+              disabled={isPending}
             >
               ADD
             </button>
