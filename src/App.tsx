@@ -15,6 +15,7 @@ import Register from "./pages/Register";
 import Settings from "./pages/Settings";
 import ShopAgentDetails from "./pages/ShopAgentDetails";
 import ShopAgents from "./pages/ShopAgents";
+import ShopDetails from "./pages/ShopDetails";
 import Shops from "./pages/Shops";
 import AppLayout from "./ui/AppLayout";
 import ProtectedRoute from "./ui/ProtectedRoute";
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="loanees/:id" element={<LoaneeDetails/>} />
           <Route path="loans" element={<Loans/>} />
           <Route path="/shops" element={<Shops/>} />
+          <Route path="shop/:id" element={<ShopDetails/>} />
           <Route path="/assign-stock" element={<AssignStock/>} />
           <Route path="loans/:id" element={<LoanDetails/>} />
           <Route path="download/:id" element={<DownloadLoan/>} />
