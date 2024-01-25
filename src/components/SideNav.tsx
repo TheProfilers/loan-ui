@@ -1,4 +1,4 @@
-import { BsBriefcase, BsFillBagCheckFill, BsFillPeopleFill, BsGear, BsHouseDoor } from "react-icons/bs";
+import { BsBagDashFill, BsBriefcase, BsFillBagCheckFill, BsFillPeopleFill, BsGear, BsHouseDoor } from "react-icons/bs";
 import { FiCreditCard } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -36,6 +36,12 @@ export default function SideNav() {
       icon: <FiCreditCard />,
      // roles: ["admin"],
   },
+  {
+    label: "Shops",
+    path: "/shops",
+    icon: <BsBagDashFill />,
+   // roles: ["admin"],
+},
       {
         label: "Settings",
         path: "/settings",
