@@ -12,6 +12,7 @@ import Loanees from "./pages/Loanees";
 import Loans from "./pages/Loans";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import SAgentDetails from "./pages/SAgentDetails";
 import Settings from "./pages/Settings";
 import ShopAgentDetails from "./pages/ShopAgentDetails";
 import ShopAgents from "./pages/ShopAgents";
@@ -45,6 +46,7 @@ export default function App() {
           
           <Route path="/agents" element={<ShopAgents/>} />
           <Route path="agents/:id" element={<ShopAgentDetails/>} />
+          <Route path="sagents/:id" element={<SAgentDetails/>} />
           <Route path="stock/:id" element={<AgentListDetails/>} />
           <Route path="loanees/:id" element={<LoaneeDetails/>} />
           <Route path="loans" element={<Loans/>} />
