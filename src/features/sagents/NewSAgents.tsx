@@ -23,7 +23,7 @@ export default function NewSAgents() {
             shopId:id,
             password:'123456'
         }
-        console.log(agentData);
+       // console.log(agentData);
         mutate(agentData);
         reset();
         closeLoanModal();
