@@ -12,14 +12,16 @@ export async function newSAgent(agent:SAgentType){
           },
           body: JSON.stringify(agent),
         });
+        
         const data = await response.json();
+        console.log(data)
         if (data.statusCode === 500) {
           throw new Error(data.message);
         }
         if (response.status === 401) {
           throw new Error("You are not authorized to perform this action");
         }
-        if (data.statusCode) {
+        if (data.statusCode || data.message) {
           throw new Error(data.message);
         }
         return data;
