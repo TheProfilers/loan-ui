@@ -6,3 +6,8 @@ export const formatCurrency = (value:number) =>
   );
 
   export const formatDate = (dateStr:string) => format(parseISO(dateStr), 'dd MMM yyyy HH:mm');
+
+  export const formatDynamicCurrency = (value:number) =>
+  new Intl.NumberFormat('en').format(
+    value
+  );

@@ -1,4 +1,5 @@
 import BackButton from "../../ui/BackButton";
+import FloatDisplay from "./FloatDisplay";
 import NewAgentFloatModal from "./NewAgentFloatModal";
 
 export default function SAgentDetailsLayout() {
@@ -11,6 +12,7 @@ export default function SAgentDetailsLayout() {
 
         <NewAgentFloatModal />
       </div>
+      <FloatDisplay/>
     </>
   );
 }

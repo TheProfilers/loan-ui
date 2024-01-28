@@ -21,7 +21,10 @@ export default function SAgents() {
         sgents.map((sagent,index)=>(
             <SAgentItem key={index} agent={sagent}/>
         ))
+        
     }
+
+  
     </>
   )
 }

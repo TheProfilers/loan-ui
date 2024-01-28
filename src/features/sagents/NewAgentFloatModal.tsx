@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 import NewLoanReusableModal, { NewLoanModalPropsRef } from "../../ui/ReusableModal";
+import { useNewAgentFloat } from "./useNewAgentFloat";
 
 export default function NewAgentFloatModal() {
     const newAgentFloatModal = useRef<NewLoanModalPropsRef>(null);
@@ -10,11 +12,19 @@ export default function NewAgentFloatModal() {
         reset,
         formState: { errors },
       } = useForm();
+      const {mutate,isPending} = useNewAgentFloat()
+      const {id}= useParams<{id:string}>()
     const closeLoanModal = () => {
         newAgentFloatModal.current?.closeModal();
       };
         const handleNewFloat = (data: any) => {
-            console.log(data);
+            //console.log(data);
+            const floatData = {
+                ...data,
+                shopagentId:id
+            }
+            //console.log(floatData);
+            mutate(floatData);
             reset();
             closeLoanModal();
         };
@@ -56,7 +66,7 @@ export default function NewAgentFloatModal() {
             <input
               className=" appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               type="number"
-              {...register("amount", { required: "AMount is required",valueAsNumber:true })}
+              {...register("amount", { required: "Amount is required",valueAsNumber:true })}
             />
             {errors.amount && (
               <p className="text-red-500 text-xs italic">Enter the Amount</p>
@@ -75,6 +85,7 @@ export default function NewAgentFloatModal() {
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
               onClick={closeLoanModal}
+              disabled={isPending}
             >
               Cancel
             </button>
