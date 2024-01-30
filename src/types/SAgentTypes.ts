@@ -3,6 +3,7 @@ export interface SAgentType{
     firstName: string;
     lastName: string;
     email: string;
+    idNumber: string;
     phoneNumber: string;
     password: string;
     shopId: string;
