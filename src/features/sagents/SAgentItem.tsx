@@ -7,7 +7,7 @@ export default function SAgentItem({agent}: {agent: SAgentType}) {
       <div className="flex gap-2">
         <div>
           <p className="capitalize font-semibold">{agent.firstName} {agent.lastName}</p>
-          <p className="text-slate-500 text-sm">{agent.phoneNumber}</p>
+          <p className="text-slate-500 text-sm">{agent.idNumber}</p>
         </div>
       </div>
     </Link>
