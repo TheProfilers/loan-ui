@@ -4,7 +4,7 @@ import { formatDynamicCurrency } from "../../utils/helpers";
 export default function FloatItem({float}: {float:FloatType}) {
   return (
    <>
-   {/* <h1 className="text-lg font-medium text-gray-400">Assigned FLoat</h1> */}
+  
     <div className='flex justify-between items-start mt-2 shadow-sm p-4 bg-teal-50'>
         <div className='flex space-x-2 items-center'>
             <div>
