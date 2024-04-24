@@ -1,6 +1,6 @@
 import { FloatType } from "../types/FloatType";
 
-const BASE_URL = "https://kalulu-857b24d77543.herokuapp.com/"
+const BASE_URL = "https://fare-rate-api-2e26b3504be5.herokuapp.com/"
 
 export async function newFloat(float:FloatType){
     try {
